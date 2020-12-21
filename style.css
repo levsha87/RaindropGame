@@ -1,8 +1,30 @@
+@font-face {
+        font-family: 'Lato-Bold'; 
+        src: url(assets/fonts/Lato/Lato-Bold.woff); 
+       }
+
+@font-face {
+font-family: 'Lato-BoldItalic'; 
+src: url(assets/fonts/Lato/Lato-BoldItalic.woff); 
+}
+
+@font-face {
+        font-family: 'Lato-Black'; 
+        src: url(assets/fonts/Lato/Lato-Black.woff); 
+       }
+
+@font-face {
+        font-family: 'Lato-Regular'; 
+        src: url(assets/fonts/Lato/Lato-Regular.woff); 
+       }
+
 body {
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
+    font-family: 'Lato-Regular'; 
+    font-size: 20px;    
 }
 .main {
     width: 100%;
@@ -34,6 +56,8 @@ body {
 button {
     width: 100px;
     height: 40px;
+    font-family: 'Lato-BoldItalic';
+    font-size: 16px;
 }
 
 
@@ -53,27 +77,28 @@ button {
 .controlPanel {
     width: 80%;
     height: 50%;
-    border: .5rem solid rgb(134, 169, 182);
-    box-shadow: 0 0 10px rgba(37, 37, 37, 0.9);
+    background-color:  rgb(235, 220, 200);;
+    box-shadow: 0 0 5px rgba(143, 136, 136, 0.9);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .screen {
-    display: block;
-    width: 99%;
-    height: 25%;
-    margin: 0;
-    padding: 0;
+    width: 91%;
+    height: 20%;
+    border-radius: 10px 10px 0 0;
 }
 .keys {
-    width: 100%;
-    height: 75%;
+    width: 92%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     margin: 0;
     padding: 0;
-    background-color: rgb(239, 253, 239);
+   
+    
 }
 
 .key__number {
@@ -96,19 +121,24 @@ button {
 
 .key {
     width: 32%;
-    height: 24.1%;
-    border: .5px solid gray;
-    
+    border: 1px solid gray;
+    background-color: rgb(239, 253, 239);
 }
+
 .key-wide {
     width: 65%;
-    height: 24.1%;
     border: .5px solid gray;
     background-color: rgb(227, 248, 227);
+    border-radius: 0 0 0 10px;
 }
 
 .key-hi {
-    width: 99%;
+    width: 100%;
     height: 50%;
     border: 2px solid gray;
+    background-color: rgb(239, 253, 239);
+}
+
+.key-hi:last-child {
+border-radius: 0 0 10px 0;
 }
