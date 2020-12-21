@@ -90,7 +90,7 @@ button {
     padding: 0;
     border-left: 3px solid #ffffff;
     border-bottom: 3px solid #ffffff;
-    border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%git ; 
+    border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%; 
 }
 .score::after {
     content: '';
