@@ -34,7 +34,7 @@ body {
 }
 
 .fieldPlay {
-    width: 75%;
+    width: 73%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -62,21 +62,50 @@ button {
 
 
 .entryField {
-    width: 25%;
+    width: 27%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(138, 204, 241, 0.5);
+    background-color: rgba(205, 237, 243, 0.89);
 }
 
 .score {
-    width: 90%;
+    width: 100%;
     height: 20%;
+  display: flex;
+  justify-content: center;  
 }
+.window__score {
+    width: 70%;
+    height: 30%;
+    border-bottom: 3px solid #ffffff;
+}
+
+.score::before {
+    content: '';
+    width: 10%;
+    height: 30%;
+    margin: 0;
+    padding: 0;
+    border-left: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%git ; 
+}
+.score::after {
+    content: '';
+    width: 10%;
+    height: 30%;
+    margin: 0;
+    padding: 0;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    border-radius: 100% 0% 100% 0% / 0% 0% 100% 100%; 
+}
+
 .controlPanel {
     width: 80%;
-    height: 50%;
+    height: 65%;
     background-color:  rgb(235, 220, 200);;
     box-shadow: 0 0 5px rgba(143, 136, 136, 0.9);
     display: flex;
@@ -97,7 +126,7 @@ button {
     flex-direction: row;
     margin: 0;
     padding: 0;
-   
+   font-size: 30px;
     
 }
 
@@ -108,6 +137,8 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: 'Lato-Bold';
+    font-size: 40px;
     
 }
 .key__word {
@@ -123,6 +154,14 @@ button {
     width: 32%;
     border: 1px solid gray;
     background-color: rgb(239, 253, 239);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key:last-child {
+    font-family: 'Lato-Bold';
+    font-size: 20px;
 }
 
 .key-wide {
@@ -137,6 +176,11 @@ button {
     height: 50%;
     border: 2px solid gray;
     background-color: rgb(239, 253, 239);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato-Bold';
+    font-size: 20px;
 }
 
 .key-hi:last-child {
