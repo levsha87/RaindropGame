@@ -40,7 +40,8 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: aquamarine;
+  background: rgb(97,121,223);
+background: linear-gradient(0deg, rgba(97,121,223,1) 0%, rgba(97,201,223,1) 15%, rgba(97,220,223,1) 36%, rgba(177,252,248,1) 57%, rgba(229,249,248,1) 81%);
 }
 
 .drop {
@@ -54,8 +55,18 @@ body {
   align-items: center;
   position: absolute;
   top: 0;
+  left: 40%;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out; /** Chrome & Safari **/
+  -moz-transition: all 2s ease-in-out; /** Firefox **/
+  -o-transition: all 2s ease-in-out; /** Opera **/
 }
-
+.drop:hover.move-up {
+  transform: translate(0,600px);
+  -webkit-transform: translate(0,600px);
+  -o-transform: translate(0,600px);
+  -moz-transform: translate(0,600px);
+}
 button {
   width: 100px;
   height: 40px;
@@ -90,6 +101,7 @@ padding-right: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(201, 233, 245);
 }
 
 .score::before {
@@ -101,6 +113,7 @@ padding-right: 15px;
   border-left: 3px solid #ffffff;
   border-bottom: 3px solid #ffffff;
   border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%;
+  background-color: rgb(201, 233, 245);
 }
 .score::after {
   content: '';
@@ -111,6 +124,7 @@ padding-right: 15px;
   border-right: 3px solid #ffffff;
   border-bottom: 3px solid #ffffff;
   border-radius: 100% 0% 100% 0% / 0% 0% 100% 100%;
+  background-color: rgb(201, 233, 245);
 }
 
 .score__number {
