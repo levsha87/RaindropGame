@@ -189,6 +189,14 @@ padding-right: 15px;
   align-items: center;
 }
 
+.key:hover {
+  cursor: pointer;
+}
+
+.key:active{
+  opacity: 70%;
+}
+
 .key:last-child {
   font-family: 'Lato-Bold';
   font-size: 20px;
@@ -201,7 +209,7 @@ padding-right: 15px;
   border-radius: 0 0 0 10px;
 }
 
-.key-hi {
+.key.high {
   width: 95%;
   height: 50%;
   border: 2px solid gray;
@@ -213,6 +221,9 @@ padding-right: 15px;
   font-size: 20px;
 }
 
-.key-hi:last-child {
+.key.high:last-child {
   border-radius: 0 0 10px 0;
 }
+
+
+
