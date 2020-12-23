@@ -61,7 +61,7 @@ background: linear-gradient(0deg, rgba(97,121,223,1) 0%, rgba(97,201,223,1) 15%,
   -moz-transition: all 2s ease-in-out; /** Firefox **/
   -o-transition: all 2s ease-in-out; /** Opera **/
 }
-.drop:hover.move-up {
+.drop.move-down {
   transform: translate(0,600px);
   -webkit-transform: translate(0,600px);
   -o-transform: translate(0,600px);
