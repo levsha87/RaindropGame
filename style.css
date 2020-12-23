@@ -67,6 +67,11 @@ background: linear-gradient(0deg, rgba(97,121,223,1) 0%, rgba(97,201,223,1) 15%,
   -o-transform: translate(0,600px);
   -moz-transform: translate(0,600px);
 }
+
+.drop.hidden {
+display: none;
+}
+
 button {
   width: 100px;
   height: 40px;
