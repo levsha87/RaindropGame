@@ -29,22 +29,48 @@ const countNumbers = {
 
     elements: {
         drop: null,
-
+        keys: null
     },
 
     init: function (){
-        this.drop = document.querySelector('.drop');
-        this.buttonPlay = document.querySelector('.play');
-        this.buttonShowHowPlay = document.querySelector('.howToPlay');
+        this.elements.drop = document.querySelector('.drop');
+        this.buttons.buttonPlay = document.querySelector('.play');
+        this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
+        this.elements.keys = document.querySelectorAll('.key');
     },
 
     hideButtons: function () {
-        this.buttonPlay.style.display ='none';
-        this.buttonShowHowPlay.style.display ='none';
+        this.buttons.buttonPlay.style.display ='none';
+        this.buttons.buttonShowHowPlay.style.display ='none';
     },
+
+    enterAnswer: function(){
+        this.elements.keys.forEach((elem) => elem.addEventListener('click', function (){
+            console.log(`${elem.textContent}`);
+        }));
+    },
+
+    buildExpression: function(){
+        /*first random number 
+        operand
+        second number*/
+    },
+
+    insertExpressionDrop: function(){ 
+
+    }, 
+
+    checkAnswer: function () {
+
+    },
+
+
+
+
 
 };
 
 
 countNumbers.init();
 countNumbers.hideButtons();
+countNumbers.enterAnswer();
