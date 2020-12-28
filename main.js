@@ -1,14 +1,4 @@
-const drop = document.querySelector('.drop');
-const buttonPlay = document.querySelector('.play');
-const buttonShowHowPlay = document.querySelector('.howToPlay');
-console.log(drop);
-
-function hideButtons() {
-    buttonPlay.style.display ='none';
-    buttonShowHowPlay.style.display ='none';
-}
-
-function showDrop() {
+/* function showDrop() {
 drop.classList.remove('hidden');
 }
 
@@ -28,6 +18,33 @@ setInterval(() => {
     drop.classList.add('hidden');
     }, 1900);
 }, 2000);
+ */
 
 
+const countNumbers = {
+    buttons: {
+        buttonPlay: null,
+        buttonShowHowPlay: null
+    },
 
+    elements: {
+        drop: null,
+
+    },
+
+    init: function (){
+        this.drop = document.querySelector('.drop');
+        this.buttonPlay = document.querySelector('.play');
+        this.buttonShowHowPlay = document.querySelector('.howToPlay');
+    },
+
+    hideButtons: function () {
+        this.buttonPlay.style.display ='none';
+        this.buttonShowHowPlay.style.display ='none';
+    },
+
+};
+
+
+countNumbers.init();
+countNumbers.hideButtons();
