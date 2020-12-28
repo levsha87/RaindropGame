@@ -61,7 +61,6 @@ const countNumbers = {
                 number = 0;
                 console.log(number);
             }
-            console.log(`${elem.textContent}`);
         }));
     },
 
