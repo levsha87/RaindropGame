@@ -45,7 +45,22 @@ const countNumbers = {
     },
 
     enterAnswer: function(){
+        let number = '';
         this.elements.keys.forEach((elem) => elem.addEventListener('click', function (){
+            number+=`${elem.textContent}`;
+            if(`${elem.textContent}`==='Enter'){
+                number = number.substring(0, number.length-5);
+                console.log(number);
+            }
+            if(`${elem.textContent}`==='Clear'){
+                number = number.substring(0, number.length-6);
+                console.log(number);
+            }
+            if (`${elem.textContent}`==='Del'){
+                number = '';
+                number = 0;
+                console.log(number);
+            }
             console.log(`${elem.textContent}`);
         }));
     },
