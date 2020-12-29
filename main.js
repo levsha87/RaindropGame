@@ -49,9 +49,14 @@ const countNumbers = {
     let number = '';
     this.elements.keys.forEach((elem) =>
       elem.addEventListener('click', function () {
-        number += `${elem.textContent}`;
+        let newNumber = `${elem.textContent}`;
+        number += newNumber;
         
-        switch(`${elem.textContent}`){
+        if (number.length === 2 && number[0] === '0') {
+            number = number.substring(1);
+        }
+
+        switch(newNumber){
             case 'Enter':
                 number = number.substring(0, number.length - 5);
                 break;
