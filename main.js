@@ -46,29 +46,33 @@ const countNumbers = {
   },
 
   enterAnswer: function () {
-    let number = '';
+    let number = 0;
     this.elements.keys.forEach((elem) =>
       elem.addEventListener('click', function () {
         let newNumber = `${elem.textContent}`;
         number += newNumber;
-        
+
         if (number.length === 2 && number[0] === '0') {
-            number = number.substring(1);
+          number = number.substring(1);
         }
 
-        switch(newNumber){
-            case 'Enter':
-                number = number.substring(0, number.length - 5);
-                break;
+        switch (newNumber) {
+          case 'Enter':
+            number = number.substring(0, number.length - 5);
+            break;
 
-            case 'Clear': 
-                number = number.substring(0, number.length - 6);
-                break;
-
-            case 'Del': 
+          case 'Clear':
+            number = number.substring(0, number.length - 6);
+            if (number === '') {
                 number = 0;
-                break;
+              }
+            break;
+
+          case 'Del':
+            number = 0;
+            break;
         }
+        
         countNumbers.elements.screen.innerHTML = number;
       })
     );
