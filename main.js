@@ -32,6 +32,18 @@ const countNumbers = {
     screen: null,
   },
 
+  numericRange: {
+    min: 0,
+    max: 10,
+  },
+
+  operatorMath: {
+      0: '+',
+      1: '-',
+      2: '*',
+      3: '/',
+  },
+
   init: function () {
     this.elements.drop = document.querySelector('.drop');
     this.buttons.buttonPlay = document.querySelector('.play');
@@ -43,6 +55,19 @@ const countNumbers = {
   hideButtons: function () {
     this.buttons.buttonPlay.style.display = 'none';
     this.buttons.buttonShowHowPlay.style.display = 'none';
+  },
+
+  getRandomNumber: function () {
+    return Math.round(
+      Math.random() * (this.numericRange.max - this.numericRange.min) +
+        this.numericRange.min
+    );
+  },
+
+  getRandomOperator: function () {
+    let operatorNumber = this.getRandomNumber();
+    console.log(operatorNumber);
+
   },
 
   enterAnswer: function () {
@@ -64,15 +89,15 @@ const countNumbers = {
           case 'Clear':
             number = number.substring(0, number.length - 6);
             if (number === '') {
-                number = 0;
-              }
+              number = 0;
+            }
             break;
 
           case 'Del':
             number = 0;
             break;
         }
-        
+
         countNumbers.elements.screen.innerHTML = number;
       })
     );
@@ -92,3 +117,6 @@ const countNumbers = {
 countNumbers.init();
 countNumbers.hideButtons();
 countNumbers.enterAnswer();
+countNumbers.getRandomOperator(1, 4);
+console.log(countNumbers.getRandomNumber());
+/*  */
