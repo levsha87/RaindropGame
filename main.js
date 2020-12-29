@@ -20,70 +20,65 @@ setInterval(() => {
 }, 2000);
  */
 
-
 const countNumbers = {
-    buttons: {
-        buttonPlay: null,
-        buttonShowHowPlay: null
-    },
+  buttons: {
+    buttonPlay: null,
+    buttonShowHowPlay: null,
+  },
 
-    elements: {
-        drop: null,
-        keys: null
-    },
+  elements: {
+    drop: null,
+    keys: null,
+    screen: null,
+  },
 
-    init: function (){
-        this.elements.drop = document.querySelector('.drop');
-        this.buttons.buttonPlay = document.querySelector('.play');
-        this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
-        this.elements.keys = document.querySelectorAll('.key');
-    },
+  init: function () {
+    this.elements.drop = document.querySelector('.drop');
+    this.buttons.buttonPlay = document.querySelector('.play');
+    this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
+    this.elements.keys = document.querySelectorAll('.key');
+    this.elements.screen = document.querySelector('.screen_number');
+  },
 
-    hideButtons: function () {
-        this.buttons.buttonPlay.style.display ='none';
-        this.buttons.buttonShowHowPlay.style.display ='none';
-    },
+  hideButtons: function () {
+    this.buttons.buttonPlay.style.display = 'none';
+    this.buttons.buttonShowHowPlay.style.display = 'none';
+  },
 
-    enterAnswer: function(){
-        let number = '';
-        this.elements.keys.forEach((elem) => elem.addEventListener('click', function (){
-            number+=`${elem.textContent}`;
-            if(`${elem.textContent}`==='Enter'){
-                number = number.substring(0, number.length-5);
-                console.log(number);
-            }
-            if(`${elem.textContent}`==='Clear'){
-                number = number.substring(0, number.length-6);
-                console.log(number);
-            }
-            if (`${elem.textContent}`==='Del'){
-                number = '';
+  enterAnswer: function () {
+    let number = '';
+    this.elements.keys.forEach((elem) =>
+      elem.addEventListener('click', function () {
+        number += `${elem.textContent}`;
+        
+        switch(`${elem.textContent}`){
+            case 'Enter':
+                number = number.substring(0, number.length - 5);
+                break;
+
+            case 'Clear': 
+                number = number.substring(0, number.length - 6);
+                break;
+
+            case 'Del': 
                 number = 0;
-                console.log(number);
-            }
-        }));
-    },
+                break;
+        }
+        countNumbers.elements.screen.innerHTML = number;
+      })
+    );
+  },
 
-    buildExpression: function(){
-        /*first random number 
+  buildExpression: function () {
+    /*first random number 
         operand
         second number*/
-    },
+  },
 
-    insertExpressionDrop: function(){ 
+  insertExpressionDrop: function () {},
 
-    }, 
-
-    checkAnswer: function () {
-
-    },
-
-
-
-
-
+  checkAnswer: function () {},
 };
-
 
 countNumbers.init();
 countNumbers.hideButtons();
