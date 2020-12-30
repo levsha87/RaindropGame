@@ -38,18 +38,19 @@ const countNumbers = {
   },
 
   operatorMath: {
-      0: '+',
-      1: '-',
-      2: '*',
-      3: '/',
+    0: '+',
+    1: '-',
+    2: '*',
+    3: '/',
   },
 
   init: function () {
     this.elements.drop = document.querySelector('.drop');
     this.buttons.buttonPlay = document.querySelector('.play');
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
-    this.elements.keys = document.querySelectorAll('.key');
+    this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
+    console.log(this.elements.keys);
   },
 
   hideButtons: function () {
@@ -67,40 +68,34 @@ const countNumbers = {
   getRandomOperator: function () {
     let operatorNumber = this.getRandomNumber();
     console.log(operatorNumber);
-
   },
 
-  enterAnswer: function () {
-    let number = 0;
-    this.elements.keys.forEach((elem) =>
-      elem.addEventListener('click', function () {
-        let newNumber = `${elem.textContent}`;
-        number += newNumber;
+  getNumberKey: function (e) {
+    let number = this.elements.screen.innerHTML;
+    let newNumber = `${e.target.textContent}`;
+    number += newNumber;
 
-        if (number.length === 2 && number[0] === '0') {
-          number = number.substring(1);
+    if (number.length === 2 && number[0] === '0') {
+      number = number.substring(1);
+    }
+
+    switch (newNumber) {
+      case 'Enter':
+        number = number.substring(0, number.length - 5);
+        break;
+
+      case 'Clear':
+        number = number.substring(0, number.length - 6);
+        if (number === '') {
+          number = 0;
         }
+        break;
 
-        switch (newNumber) {
-          case 'Enter':
-            number = number.substring(0, number.length - 5);
-            break;
-
-          case 'Clear':
-            number = number.substring(0, number.length - 6);
-            if (number === '') {
-              number = 0;
-            }
-            break;
-
-          case 'Del':
-            number = 0;
-            break;
-        }
-
-        countNumbers.elements.screen.innerHTML = number;
-      })
-    );
+      case 'Del':
+        number = 0;
+        break;
+    }
+    this.elements.screen.innerHTML = number;
   },
 
   buildExpression: function () {
@@ -116,7 +111,9 @@ const countNumbers = {
 
 countNumbers.init();
 countNumbers.hideButtons();
-countNumbers.enterAnswer();
 countNumbers.getRandomOperator(1, 4);
 console.log(countNumbers.getRandomNumber());
+countNumbers.elements.keys.addEventListener('click', (e) =>
+  countNumbers.getNumberKey(e)
+);
 /*  */
