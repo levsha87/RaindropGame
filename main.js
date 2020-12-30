@@ -38,10 +38,10 @@ const countNumbers = {
   },
 
   operatorMath: {
-    0: '+',
-    1: '-',
-    2: '*',
-    3: '/',
+    '+': 0,
+    '-': 1,
+    '*': 2,
+    '/': 3,
   },
 
   init: function () {
@@ -50,7 +50,6 @@ const countNumbers = {
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
-    console.log(this.elements.keys);
   },
 
   hideButtons: function () {
@@ -66,8 +65,10 @@ const countNumbers = {
   },
 
   getRandomOperator: function () {
-    let operatorNumber = this.getRandomNumber();
-    console.log(operatorNumber);
+    return Math.round(
+      Math.random() * (this.operatorMath['+'] - this.operatorMath['/']) +
+        this.operatorMath['/']
+    );
   },
 
   getNumberKey: function (e) {
@@ -111,9 +112,8 @@ const countNumbers = {
 
 countNumbers.init();
 countNumbers.hideButtons();
-countNumbers.getRandomOperator(1, 4);
-console.log(countNumbers.getRandomNumber());
+console.log(countNumbers.getRandomOperator());
+
 countNumbers.elements.keys.addEventListener('click', (e) =>
   countNumbers.getNumberKey(e)
 );
-/*  */
