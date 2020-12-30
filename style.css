@@ -66,6 +66,10 @@ body {
   -o-transition: all 2s ease-in-out; /** Opera **/
 }
 
+.operator {
+  font-size: 30px;
+}
+
 .dropContainerNumbers{
   display: flex;
   flex-direction: column;

@@ -44,12 +44,22 @@ const countNumbers = {
     '/': 3,
   },
 
+  dropExpression: {
+    firstNumber: null,
+    secondNumber: null,
+    currentOperator: null,
+  },
+
   init: function () {
     this.elements.drop = document.querySelector('.drop');
     this.buttons.buttonPlay = document.querySelector('.play');
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
+    this.dropExpression.firstNumber = document.querySelector('.firstNumber');
+    this.dropExpression.secondNumber = document.querySelector('.secondNumber');
+    this.dropExpression.currentOperator = document.querySelector('.operator');
+    console.log(this.dropExpression.firstNumber);
   },
 
   hideButtons: function () {
@@ -100,19 +110,41 @@ const countNumbers = {
   },
 
   buildExpression: function () {
-    /*first random number 
-        operand
-        second number*/
-  },
+    let expression = '';
+    let currentOperator = (this.dropExpression.currentOperator.innerHTML = this.getRandomOperator());
+    let firstNumber = (this.dropExpression.firstNumber.innerHTML = this.getRandomNumber());
+    let secondNumber = (this.dropExpression.secondNumber.innerHTML = this.getRandomNumber());
+    switch (currentOperator) {
+      case 0:
+        currentOperator = '+';
+        this.dropExpression.currentOperator.innerHTML = currentOperator;
+        break;
 
-  insertExpressionDrop: function () {},
+      case 1:
+        currentOperator = '-';
+        this.dropExpression.currentOperator.innerHTML = currentOperator;
+        break;
+
+      case 2:
+        currentOperator = '*';
+        this.dropExpression.currentOperator.innerHTML = '×';
+        break;
+
+      case 3:
+        currentOperator = '/';
+        this.dropExpression.currentOperator.innerHTML = '÷';
+        break;
+    }
+    expression = `${firstNumber}${currentOperator}${secondNumber}`;
+    console.log(firstNumber, secondNumber, currentOperator);
+  },
 
   checkAnswer: function () {},
 };
 
 countNumbers.init();
 countNumbers.hideButtons();
-console.log(countNumbers.getRandomOperator());
+countNumbers.buildExpression();
 
 countNumbers.elements.keys.addEventListener('click', (e) =>
   countNumbers.getNumberKey(e)
