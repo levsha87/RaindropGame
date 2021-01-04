@@ -1,25 +1,3 @@
-/* function showDrop() {
-drop.classList.remove('hidden');
-}
-
-function moveDropDown() {
-drop.classList.add('move-down');
-}
-
-function hideDrop () {
-    drop.classList.add('hidden');
-} 
-setInterval(() => {
-    hideButtons();
-    setTimeout(showDrop, 100);
-    setTimeout(moveDropDown, 200);
-    setTimeout(() => {
-    drop.classList.remove('move-down');
-    drop.classList.add('hidden');
-    }, 1900);
-}, 2000);
- */
-
 const countNumbers = {
   buttons: {
     buttonPlay: null,
@@ -139,13 +117,52 @@ const countNumbers = {
     console.log(firstNumber, secondNumber, currentOperator);
   },
 
+  showDrop: function () {
+    this.elements.drop.classList.remove('hidden');
+  }, 
+
+  moveDropDown: function () {
+    this.elements.drop.classList.add('move-down');
+  },
+
+  stopMoveDropDown: function () {
+    this.elements.drop.classList.remove('move-down');
+  },
+    
+  hideDrop:  function  () {
+    this.elements.drop.classList.add('hidden');
+  },
+
+ 
+
   checkAnswer: function () {},
 };
 
 countNumbers.init();
-countNumbers.hideButtons();
-countNumbers.buildExpression();
 
 countNumbers.elements.keys.addEventListener('click', (e) =>
-  countNumbers.getNumberKey(e)
+countNumbers.getNumberKey(e)
 );
+
+countNumbers.buttons.buttonPlay.addEventListener('click', function() {
+  countNumbers.hideButtons();
+  setInterval(() => {
+    
+    setTimeout(() => {
+      countNumbers.showDrop();
+      countNumbers.buildExpression();
+    }, 0);
+
+    setTimeout(() => {
+    countNumbers.moveDropDown();
+  }, 100);
+
+    setTimeout(() => {
+    countNumbers.stopMoveDropDown();
+    countNumbers.hideDrop();
+     },  3000);
+    }, 3100);
+});
+
+
+

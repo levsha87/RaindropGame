@@ -60,10 +60,10 @@ body {
   position: absolute;
   top: 0;
   left: 40%;
-  transition: all 2s ease-in-out;
-  -webkit-transition: all 2s ease-in-out; /** Chrome & Safari **/
-  -moz-transition: all 2s ease-in-out; /** Firefox **/
-  -o-transition: all 2s ease-in-out; /** Opera **/
+  transition: all 4s ease-in-out;
+  -webkit-transition: all 4s ease-in-out; /** Chrome & Safari **/
+  -moz-transition: all 4s ease-in-out; /** Firefox **/
+  -o-transition: all 4s ease-in-out; /** Opera **/
 }
 
 .operator {
