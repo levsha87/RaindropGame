@@ -39,7 +39,6 @@ const countNumbers = {
     this.dropExpression.firstNumber = document.querySelector('.firstNumber');
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
-    console.log(this.dropExpression.firstNumber);
   },
 
   hideButtons: function () {
@@ -100,21 +99,20 @@ const countNumbers = {
         this.dropExpression.currentOperator.innerHTML = currentOperator;
         this.dropExpression.firstNumber.innerHTML = firstNumber;
         this.dropExpression.secondNumber.innerHTML = secondNumber;
-        expression = `${firstNumber}${currentOperator}${secondNumber}`;
+        expression = firstNumber + secondNumber;
+        this.checkAnswer(expression);
         break;
 
       case 1:
         currentOperator = '-';
         this.dropExpression.currentOperator.innerHTML = currentOperator;
-        console.log(firstNumber, secondNumber);
-        if (firstNumber < secondNumber) {
-          this.dropExpression.firstNumber.innerHTML = secondNumber;
-          this.dropExpression.secondNumber.innerHTML = firstNumber;
-          expression = `${secondNumber}${currentOperator}${firstNumber}`;
-        } else {
+        if (firstNumber >= secondNumber) {
           this.dropExpression.firstNumber.innerHTML = firstNumber;
           this.dropExpression.secondNumber.innerHTML = secondNumber;
-          expression = `${firstNumber}${currentOperator}${secondNumber}`;
+          expression = firstNumber - secondNumber;
+          this.checkAnswer(expression);
+        } else {
+          this.buildExpression();
         }
         break;
 
@@ -123,27 +121,33 @@ const countNumbers = {
         this.dropExpression.currentOperator.innerHTML = '×';
         this.dropExpression.firstNumber.innerHTML = firstNumber;
         this.dropExpression.secondNumber.innerHTML = secondNumber;
-        expression = `${firstNumber}${currentOperator}${secondNumber}`;
+        expression = firstNumber * secondNumber;
+        this.checkAnswer(expression);
         break;
 
       case 3:
         currentOperator = '/';
-        console.log(firstNumber, secondNumber);
-        if (firstNumber % secondNumber !== 0 || secondNumber === 0) {
-          break;
+        if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
+          this.dropExpression.currentOperator.innerHTML = '÷';
+          this.dropExpression.firstNumber.innerHTML = firstNumber;
+          this.dropExpression.secondNumber.innerHTML = secondNumber;
+          expression = firstNumber / secondNumber;
+          this.checkAnswer(expression);
+        } else {
+          this.buildExpression();
         }
-        this.dropExpression.currentOperator.innerHTML = '÷';
-        this.dropExpression.firstNumber.innerHTML = firstNumber;
-        this.dropExpression.secondNumber.innerHTML = secondNumber;
-        expression = `${firstNumber}${currentOperator}${secondNumber}`;
         break;
     }
   },
 
-  getCoordinateStoneTop: function (){
-    console.log(this.elements.stone.getBoundingClientRect().y);
-    console.log(this.elements.drop.offsetHeight);
-    this.elements.drop.style.setProperty('--coordinataY', `${this.elements.stone.getBoundingClientRect().y - this.elements.drop.offsetHeight}px`);
+  getCoordinateStoneTop: function () {
+    this.elements.drop.style.setProperty(
+      '--coordinataY',
+      `${
+        this.elements.stone.getBoundingClientRect().y -
+        this.elements.drop.offsetHeight
+      }px`
+    );
   },
 
   showDrop: function () {
@@ -163,9 +167,11 @@ const countNumbers = {
     this.elements.drop.classList.add('hidden');
   },
 
-  
-
-  checkAnswer: function () {},
+  checkAnswer: function (expression) {
+    if (expression) {
+      console.log(expression);
+    }
+  },
 };
 
 countNumbers.init();
@@ -189,6 +195,6 @@ countNumbers.buttons.buttonPlay.addEventListener('click', function () {
     setTimeout(() => {
       countNumbers.stopMoveDropDown();
       countNumbers.hideDrop();
-    }, 6000);
-  }, 6100);
+    }, 4000);
+  }, 4100);
 });
