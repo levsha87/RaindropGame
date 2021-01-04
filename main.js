@@ -8,6 +8,7 @@ const countNumbers = {
     drop: null,
     keys: null,
     screen: null,
+    stone: null,
   },
 
   numericRange: {
@@ -34,6 +35,7 @@ const countNumbers = {
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
+    this.elements.stone = document.querySelector('.stone');
     this.dropExpression.firstNumber = document.querySelector('.firstNumber');
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
@@ -138,6 +140,11 @@ const countNumbers = {
     }
   },
 
+  getCoordinateStoneTop: function (){
+    console.log(this.elements.stone.getBoundingClientRect().y);
+    this.elements.drop.style.setProperty('--coordinataY', this.elements.stone.getBoundingClientRect().y + 'px');
+  },
+
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
   },
@@ -154,11 +161,13 @@ const countNumbers = {
     this.elements.drop.classList.add('hidden');
   },
 
+  
+
   checkAnswer: function () {},
 };
 
 countNumbers.init();
-
+countNumbers.getCoordinateStoneTop();
 countNumbers.elements.keys.addEventListener('click', (e) =>
   countNumbers.getNumberKey(e)
 );

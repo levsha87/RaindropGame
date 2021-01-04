@@ -1,3 +1,8 @@
+:root {
+--coordinataY: 300px;
+}
+
+
 @font-face {
   font-family: 'Lato-Bold';
   src: url(assets/fonts/Lato/Lato-Bold.woff);
@@ -77,10 +82,10 @@ body {
 }
 
 .drop.move-down {
-  transform: translate(0,600px);
-  -webkit-transform: translate(0,600px);
-  -o-transform: translate(0,600px);
-  -moz-transform: translate(0,600px);
+  transform: translateY(var(--coordinataY));
+  -webkit-transform: translateY(var(--coordinataY));
+  -o-transform: translateY(var(--coordinataY));
+  -moz-transform: translateY(var(--coordinataY));
 }
 
 .drop.hidden {
