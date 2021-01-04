@@ -89,37 +89,58 @@ const countNumbers = {
 
   buildExpression: function () {
     let expression = '';
-    let currentOperator = (this.dropExpression.currentOperator.innerHTML = this.getRandomOperator());
-    let firstNumber = (this.dropExpression.firstNumber.innerHTML = this.getRandomNumber());
-    let secondNumber = (this.dropExpression.secondNumber.innerHTML = this.getRandomNumber());
+    let currentOperator = this.getRandomOperator();
+    let firstNumber = this.getRandomNumber();
+    let secondNumber = this.getRandomNumber();
     switch (currentOperator) {
       case 0:
         currentOperator = '+';
         this.dropExpression.currentOperator.innerHTML = currentOperator;
+        this.dropExpression.firstNumber.innerHTML = firstNumber;
+        this.dropExpression.secondNumber.innerHTML = secondNumber;
+        expression = `${firstNumber}${currentOperator}${secondNumber}`;
         break;
 
       case 1:
         currentOperator = '-';
         this.dropExpression.currentOperator.innerHTML = currentOperator;
+        console.log(firstNumber, secondNumber);
+        if (firstNumber < secondNumber) {
+          this.dropExpression.firstNumber.innerHTML = secondNumber;
+          this.dropExpression.secondNumber.innerHTML = firstNumber;
+          expression = `${secondNumber}${currentOperator}${firstNumber}`;
+        } else {
+          this.dropExpression.firstNumber.innerHTML = firstNumber;
+          this.dropExpression.secondNumber.innerHTML = secondNumber;
+          expression = `${firstNumber}${currentOperator}${secondNumber}`;
+        }
         break;
 
       case 2:
         currentOperator = '*';
         this.dropExpression.currentOperator.innerHTML = '×';
+        this.dropExpression.firstNumber.innerHTML = firstNumber;
+        this.dropExpression.secondNumber.innerHTML = secondNumber;
+        expression = `${firstNumber}${currentOperator}${secondNumber}`;
         break;
 
       case 3:
         currentOperator = '/';
+        console.log(firstNumber, secondNumber);
+        if (firstNumber % secondNumber !== 0 || secondNumber === 0) {
+          break;
+        }
         this.dropExpression.currentOperator.innerHTML = '÷';
+        this.dropExpression.firstNumber.innerHTML = firstNumber;
+        this.dropExpression.secondNumber.innerHTML = secondNumber;
+        expression = `${firstNumber}${currentOperator}${secondNumber}`;
         break;
     }
-    expression = `${firstNumber}${currentOperator}${secondNumber}`;
-    console.log(firstNumber, secondNumber, currentOperator);
   },
 
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
-  }, 
+  },
 
   moveDropDown: function () {
     this.elements.drop.classList.add('move-down');
@@ -128,12 +149,10 @@ const countNumbers = {
   stopMoveDropDown: function () {
     this.elements.drop.classList.remove('move-down');
   },
-    
-  hideDrop:  function  () {
+
+  hideDrop: function () {
     this.elements.drop.classList.add('hidden');
   },
-
- 
 
   checkAnswer: function () {},
 };
@@ -141,28 +160,24 @@ const countNumbers = {
 countNumbers.init();
 
 countNumbers.elements.keys.addEventListener('click', (e) =>
-countNumbers.getNumberKey(e)
+  countNumbers.getNumberKey(e)
 );
 
-countNumbers.buttons.buttonPlay.addEventListener('click', function() {
+countNumbers.buttons.buttonPlay.addEventListener('click', function () {
   countNumbers.hideButtons();
   setInterval(() => {
-    
     setTimeout(() => {
       countNumbers.showDrop();
       countNumbers.buildExpression();
     }, 0);
 
     setTimeout(() => {
-    countNumbers.moveDropDown();
-  }, 100);
+      countNumbers.moveDropDown();
+    }, 100);
 
     setTimeout(() => {
-    countNumbers.stopMoveDropDown();
-    countNumbers.hideDrop();
-     },  3000);
-    }, 3100);
+      countNumbers.stopMoveDropDown();
+      countNumbers.hideDrop();
+    }, 3000);
+  }, 3100);
 });
-
-
-
