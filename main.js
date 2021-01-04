@@ -142,11 +142,13 @@ const countNumbers = {
 
   getCoordinateStoneTop: function (){
     console.log(this.elements.stone.getBoundingClientRect().y);
-    this.elements.drop.style.setProperty('--coordinataY', this.elements.stone.getBoundingClientRect().y + 'px');
+    console.log(this.elements.drop.offsetHeight);
+    this.elements.drop.style.setProperty('--coordinataY', `${this.elements.stone.getBoundingClientRect().y - this.elements.drop.offsetHeight}px`);
   },
 
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
+    countNumbers.getCoordinateStoneTop();
   },
 
   moveDropDown: function () {
@@ -167,7 +169,7 @@ const countNumbers = {
 };
 
 countNumbers.init();
-countNumbers.getCoordinateStoneTop();
+
 countNumbers.elements.keys.addEventListener('click', (e) =>
   countNumbers.getNumberKey(e)
 );
@@ -187,6 +189,6 @@ countNumbers.buttons.buttonPlay.addEventListener('click', function () {
     setTimeout(() => {
       countNumbers.stopMoveDropDown();
       countNumbers.hideDrop();
-    }, 3000);
-  }, 3100);
+    }, 6000);
+  }, 6100);
 });

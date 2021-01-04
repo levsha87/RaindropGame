@@ -1,5 +1,6 @@
 :root {
 --coordinataY: 300px;
+--timeDropDown: 6s;
 }
 
 
@@ -65,10 +66,10 @@ body {
   position: absolute;
   top: 0;
   left: 40%;
-  transition: all 4s ease-in-out;
-  -webkit-transition: all 4s ease-in-out; /** Chrome & Safari **/
-  -moz-transition: all 4s ease-in-out; /** Firefox **/
-  -o-transition: all 4s ease-in-out; /** Opera **/
+  transition: all var(--timeDropDown) ease-in-out;
+  -webkit-transition: all var(--timeDropDown) ease-in-out; /** Chrome & Safari **/
+  -moz-transition: all var(--timeDropDown) ease-in-out; /** Firefox **/
+  -o-transition: all var(--timeDropDown) ease-in-out; /** Opera **/
 }
 
 .operator {
