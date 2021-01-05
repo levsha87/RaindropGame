@@ -150,9 +150,14 @@ const countNumbers = {
     );
   },
 
+  getTimeDropDown: function () {
+    this.elements.drop.style.setProperty ('--timeDropDown', '3s');
+  },
+
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
     countNumbers.getCoordinateStoneTop();
+    this.getTimeDropDown();
   },
 
   moveDropDown: function () {
@@ -182,19 +187,15 @@ countNumbers.elements.keys.addEventListener('click', (e) =>
 
 countNumbers.buttons.buttonPlay.addEventListener('click', function () {
   countNumbers.hideButtons();
-  setInterval(() => {
-    setTimeout(() => {
-      countNumbers.showDrop();
-      countNumbers.buildExpression();
-    }, 0);
-
-    setTimeout(() => {
-      countNumbers.moveDropDown();
-    }, 100);
-
-    setTimeout(() => {
-      countNumbers.stopMoveDropDown();
-      countNumbers.hideDrop();
-    }, 4000);
-  }, 4100);
+  moveDropOneTimes ();
 });
+
+function moveDropOneTimes () {
+  countNumbers.showDrop();
+  countNumbers.buildExpression();
+  countNumbers.moveDropDown();
+  countNumbers.elements.drop.addEventListener('transitionend', function () {
+    countNumbers.stopMoveDropDown();
+    countNumbers.hideDrop();
+  });
+}
