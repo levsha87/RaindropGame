@@ -23,6 +23,12 @@ const countNumbers = {
     '/': 3,
   },
 
+  onePlayDuration: {
+    easy: 300,
+    medium: 240,
+    hard: 180
+  },
+
   dropExpression: {
     firstNumber: null,
     secondNumber: null,
@@ -154,6 +160,14 @@ const countNumbers = {
     this.elements.drop.style.setProperty ('--timeDropDown', '3s');
   },
 
+  startTimeGame: function () {
+    let time = this.onePlayDuration.easy;
+    setInterval(() => {
+      time--;
+      console.log(time); 
+    }, 1000);
+  },
+
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
     countNumbers.getCoordinateStoneTop();
@@ -187,6 +201,7 @@ countNumbers.elements.keys.addEventListener('click', (e) =>
 
 countNumbers.buttons.buttonPlay.addEventListener('click', function () {
   countNumbers.hideButtons();
+  countNumbers.startTimeGame();
   moveDropOneTimes ();
 });
 
