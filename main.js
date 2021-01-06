@@ -1,4 +1,4 @@
-const countNumbers = {
+const game = {
   buttons: {
     buttonPlay: null,
     buttonShowHowPlay: null,
@@ -24,15 +24,17 @@ const countNumbers = {
   },
 
   onePlayDuration: {
-    easy: 300,
+    easy: 30,
     medium: 240,
-    hard: 180
+    hard: 180,
   },
 
   dropExpression: {
     firstNumber: null,
     secondNumber: null,
     currentOperator: null,
+    expression: null,
+    userNumberAnswer: null,
   },
 
   init: function () {
@@ -67,17 +69,21 @@ const countNumbers = {
   },
 
   getNumberKey: function (e) {
-    let number = this.elements.screen.innerHTML;
+    this.elements.drop.userNumberAnswer = this.elements.screen.innerHTML;
+    let number = this.elements.drop.userNumberAnswer;
     let newNumber = `${e.target.textContent}`;
     number += newNumber;
 
     if (number.length === 2 && number[0] === '0') {
       number = number.substring(1);
+      this.elements.drop.userNumberAnswer = number;
     }
 
     switch (newNumber) {
       case 'Enter':
         number = number.substring(0, number.length - 5);
+        this.elements.drop.userNumberAnswer = number;
+        this.checkAnswer();
         break;
 
       case 'Clear':
@@ -85,17 +91,18 @@ const countNumbers = {
         if (number === '') {
           number = 0;
         }
+        this.elements.drop.userNumberAnswer = number;
         break;
 
       case 'Del':
         number = 0;
+        this.elements.drop.userNumberAnswer = number;
         break;
     }
     this.elements.screen.innerHTML = number;
   },
 
   buildExpression: function () {
-    let expression = '';
     let currentOperator = this.getRandomOperator();
     let firstNumber = this.getRandomNumber();
     let secondNumber = this.getRandomNumber();
@@ -105,8 +112,7 @@ const countNumbers = {
         this.dropExpression.currentOperator.innerHTML = currentOperator;
         this.dropExpression.firstNumber.innerHTML = firstNumber;
         this.dropExpression.secondNumber.innerHTML = secondNumber;
-        expression = firstNumber + secondNumber;
-        this.checkAnswer(expression);
+        this.dropExpression.expression = firstNumber + secondNumber;
         break;
 
       case 1:
@@ -115,8 +121,7 @@ const countNumbers = {
         if (firstNumber >= secondNumber) {
           this.dropExpression.firstNumber.innerHTML = firstNumber;
           this.dropExpression.secondNumber.innerHTML = secondNumber;
-          expression = firstNumber - secondNumber;
-          this.checkAnswer(expression);
+          this.dropExpression.expression = firstNumber - secondNumber;
         } else {
           this.buildExpression();
         }
@@ -127,8 +132,7 @@ const countNumbers = {
         this.dropExpression.currentOperator.innerHTML = '×';
         this.dropExpression.firstNumber.innerHTML = firstNumber;
         this.dropExpression.secondNumber.innerHTML = secondNumber;
-        expression = firstNumber * secondNumber;
-        this.checkAnswer(expression);
+        this.dropExpression.expression = firstNumber * secondNumber;
         break;
 
       case 3:
@@ -137,8 +141,7 @@ const countNumbers = {
           this.dropExpression.currentOperator.innerHTML = '÷';
           this.dropExpression.firstNumber.innerHTML = firstNumber;
           this.dropExpression.secondNumber.innerHTML = secondNumber;
-          expression = firstNumber / secondNumber;
-          this.checkAnswer(expression);
+          this.dropExpression.expression = firstNumber / secondNumber;
         } else {
           this.buildExpression();
         }
@@ -157,20 +160,23 @@ const countNumbers = {
   },
 
   getTimeDropDown: function () {
-    this.elements.drop.style.setProperty ('--timeDropDown', '3s');
+    this.elements.drop.style.setProperty('--timeDropDown', '10s');
   },
 
   startTimeGame: function () {
     let time = this.onePlayDuration.easy;
     setInterval(() => {
       time--;
-      console.log(time); 
+      console.log(time);
+      if (time === 0) {
+        return;
+      }
     }, 1000);
   },
 
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
-    countNumbers.getCoordinateStoneTop();
+    game.getCoordinateStoneTop();
     this.getTimeDropDown();
   },
 
@@ -186,31 +192,34 @@ const countNumbers = {
     this.elements.drop.classList.add('hidden');
   },
 
-  checkAnswer: function (expression) {
-    if (expression) {
-      console.log(expression);
+  checkAnswer: function () {
+    console.log(this.dropExpression.expression, this.elements.drop.userNumberAnswer);
+    if (this.dropExpression.expression === +this.elements.drop.userNumberAnswer) {
+      console.log('right');
+      game.stopMoveDropDown();
+      game.hideDrop();
     }
   },
 };
 
-countNumbers.init();
+game.init();
 
-countNumbers.elements.keys.addEventListener('click', (e) =>
-  countNumbers.getNumberKey(e)
-);
-
-countNumbers.buttons.buttonPlay.addEventListener('click', function () {
-  countNumbers.hideButtons();
-  countNumbers.startTimeGame();
-  moveDropOneTimes ();
+game.elements.keys.addEventListener('click', (e) => {
+  game.getNumberKey(e);
 });
 
-function moveDropOneTimes () {
-  countNumbers.showDrop();
-  countNumbers.buildExpression();
-  countNumbers.moveDropDown();
-  countNumbers.elements.drop.addEventListener('transitionend', function () {
-    countNumbers.stopMoveDropDown();
-    countNumbers.hideDrop();
+game.buttons.buttonPlay.addEventListener('click', function () {
+  game.hideButtons();
+  game.startTimeGame();
+  moveDropOneTimes();
+});
+
+function moveDropOneTimes() {
+  game.showDrop();
+  game.buildExpression();
+  game.moveDropDown();
+  game.elements.drop.addEventListener('transitionend', function () {
+    game.stopMoveDropDown();
+    game.hideDrop();
   });
 }
