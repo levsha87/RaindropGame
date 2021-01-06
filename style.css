@@ -54,6 +54,14 @@ body {
   background: linear-gradient(0deg, rgba(97,121,223,1) 0%, rgba(97,201,223,1) 15%, rgba(97,220,223,1) 36%, rgba(177,252,248,1) 57%, rgba(229,249,248,1) 81%);
 }
 
+.wrapper_button {
+width: 100%;
+height: 200px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+
 .drop {
   width: 70px;
   height: 70px;

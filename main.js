@@ -87,7 +87,6 @@ const game = {
         this.elements.drop.userNumberAnswer = number;
         this.checkAnswer();
         number = 0;
-        
         break;
 
       case 'Clear':
@@ -206,15 +205,26 @@ const game = {
       console.log('right');
       game.stopMoveDropDown();
       game.hideDrop();
-      this.setCountToScreen();
+      this.setNumberPlusToScreen();
+      setTimeout( () => {moveDropOneTimes();}, 1);
+    } else {
+      game.stopMoveDropDown();
+      game.hideDrop();
+      this.setNumberMinusToScreen();
       setTimeout( () => {moveDropOneTimes();}, 1);
     }
   },
 
-  setCountToScreen: function () {
+  setNumberPlusToScreen: function () {
     let score = +this.elements.score.innerHTML;
     score += +this.elements.drop.userNumberAnswer;
     this.elements.score.innerHTML = score;
+  },
+
+  setNumberMinusToScreen: function () {
+    let score = +this.elements.score.innerHTML;
+      score -= +this.dropExpression.expression;
+      this.elements.score.innerHTML = score;
   }
 };
 
@@ -237,5 +247,6 @@ function moveDropOneTimes() {
   game.elements.drop.addEventListener('transitionend', function () {
     game.stopMoveDropDown();
     game.hideDrop();
+    setTimeout( () => {moveDropOneTimes();}, 1);
   });
 }
