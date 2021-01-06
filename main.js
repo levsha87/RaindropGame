@@ -9,6 +9,7 @@ const game = {
     keys: null,
     screen: null,
     stone: null,
+    score: null,
   },
 
   numericRange: {
@@ -47,6 +48,7 @@ const game = {
     this.dropExpression.firstNumber = document.querySelector('.firstNumber');
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
+    this.elements.score = document.querySelector('.score__number');
   },
 
   hideButtons: function () {
@@ -84,6 +86,8 @@ const game = {
         number = number.substring(0, number.length - 5);
         this.elements.drop.userNumberAnswer = number;
         this.checkAnswer();
+        number = 0;
+        
         break;
 
       case 'Clear':
@@ -165,11 +169,14 @@ const game = {
 
   startTimeGame: function () {
     let time = this.onePlayDuration.easy;
-    setInterval(() => {
+    let timerId = setInterval(() => {
       time--;
       console.log(time);
       if (time === 0) {
-        return;
+        clearInterval(timerId);
+        game.stopMoveDropDown();
+        game.hideDrop();
+        alert('Your result 0');
       }
     }, 1000);
   },
@@ -193,13 +200,22 @@ const game = {
   },
 
   checkAnswer: function () {
-    console.log(this.dropExpression.expression, this.elements.drop.userNumberAnswer);
-    if (this.dropExpression.expression === +this.elements.drop.userNumberAnswer) {
+       if (
+      this.dropExpression.expression === +this.elements.drop.userNumberAnswer
+    ) {
       console.log('right');
       game.stopMoveDropDown();
       game.hideDrop();
+      this.setCountToScreen();
+      setTimeout( () => {moveDropOneTimes();}, 1);
     }
   },
+
+  setCountToScreen: function () {
+    let score = +this.elements.score.innerHTML;
+    score += +this.elements.drop.userNumberAnswer;
+    this.elements.score.innerHTML = score;
+  }
 };
 
 game.init();
