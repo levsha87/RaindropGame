@@ -11,6 +11,8 @@ const game = {
     stone: null,
     score: null,
     sound: null,
+    soundRightAnswer: null,
+    soundWrongAnswer: null,
   },
 
   numericRange: {
@@ -51,6 +53,8 @@ const game = {
     this.dropExpression.currentOperator = document.querySelector('.operator');
     this.elements.score = document.querySelector('.score__number');
     this.elements.sound = document.querySelector('.rains_sound');
+    this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
+    this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
   },
 
   hideButtons: function () {
@@ -218,11 +222,13 @@ const game = {
       console.log('right');
       game.stopMoveDropDown();
       game.hideDrop();
+      this.elements.soundRightAnswer.play();
       this.setNumberPlusToScreen();
       setTimeout( () => {moveDropOneTimes();});
     } else {
       game.stopMoveDropDown();
       game.hideDrop();
+      this.elements.soundWrongAnswer.play();
       this.setNumberMinusToScreen();
       setTimeout( () => {moveDropOneTimes();});
     }
