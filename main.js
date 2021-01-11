@@ -224,12 +224,14 @@ const game = {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundRightAnswer.play();
+      this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
       setTimeout( () => {moveDropOneTimes();});
     } else {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
+      this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
       setTimeout( () => {moveDropOneTimes();});
     }
