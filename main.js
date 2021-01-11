@@ -168,6 +168,10 @@ const game = {
     this.elements.drop.style.setProperty('--timeDropDown', '10s');
   },
 
+  showHowToPlay: function () {
+
+  },
+
   startTimeGame: function () {
     let time = this.onePlayDuration.easy;
     this.playBackgroundSound();
@@ -179,7 +183,7 @@ const game = {
         game.stopMoveDropDown();
         game.hideDrop();
         this.elements.sound.pause();
-        alert('Your result 0');
+        alert(`Great! Your result ${this.elements.score.textContent}!`);
       }
     }, 1000);
   },
