@@ -173,11 +173,12 @@ const game = {
   },
 
   showHowToPlay: function () {
-
+    this.startTimeGame (this.onePlayDuration.easy = 10);
+    console.log('exit');
   },
 
   startTimeGame: function () {
-    let time = this.onePlayDuration.easy;
+   let time = this.onePlayDuration.easy;
     this.playBackgroundSound();
     let timerId = setInterval(() => {
       time--;
@@ -226,14 +227,14 @@ const game = {
       this.elements.soundRightAnswer.play();
       this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
-      setTimeout( () => {moveDropOneTimes();});
+      setTimeout( () => {moveDrop();});
     } else {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
       this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
-      setTimeout( () => {moveDropOneTimes();});
+      setTimeout( () => {moveDrop();});
     }
   },
 
@@ -259,16 +260,24 @@ game.elements.keys.addEventListener('click', (e) => {
 game.buttons.buttonPlay.addEventListener('click', function () {
   game.hideButtons();
   game.startTimeGame();
-  moveDropOneTimes();
+  moveDrop();
 });
 
-function moveDropOneTimes() {
+game.buttons.buttonShowHowPlay.addEventListener('click', function () {
+  game.hideButtons();
+  moveDrop();
+  game.showHowToPlay();
+});
+
+function moveDrop() {
   game.showDrop();
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
     game.stopMoveDropDown();
     game.hideDrop();
-    setTimeout( () => {moveDropOneTimes();}, 1);
+    setTimeout( () => {
+      moveDrop();
+    }, 1);
   });
 }
