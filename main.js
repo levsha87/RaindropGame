@@ -10,6 +10,7 @@ const game = {
     screen: null,
     stone: null,
     score: null,
+    sound: null,
   },
 
   numericRange: {
@@ -49,6 +50,7 @@ const game = {
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
     this.elements.score = document.querySelector('.score__number');
+    this.elements.sound = document.querySelector('.rains_sound');
   },
 
   hideButtons: function () {
@@ -168,6 +170,7 @@ const game = {
 
   startTimeGame: function () {
     let time = this.onePlayDuration.easy;
+    this.playBackgroundSound();
     let timerId = setInterval(() => {
       time--;
       console.log(time);
@@ -175,9 +178,15 @@ const game = {
         clearInterval(timerId);
         game.stopMoveDropDown();
         game.hideDrop();
+        this.elements.sound.pause();
         alert('Your result 0');
       }
     }, 1000);
+  },
+
+  playBackgroundSound: function () {
+    this.elements.sound.loop = 'loop';
+    this.elements.sound.play();
   },
 
   showDrop: function () {
@@ -206,12 +215,12 @@ const game = {
       game.stopMoveDropDown();
       game.hideDrop();
       this.setNumberPlusToScreen();
-      setTimeout( () => {moveDropOneTimes();}, 1);
+      setTimeout( () => {moveDropOneTimes();});
     } else {
       game.stopMoveDropDown();
       game.hideDrop();
       this.setNumberMinusToScreen();
-      setTimeout( () => {moveDropOneTimes();}, 1);
+      setTimeout( () => {moveDropOneTimes();});
     }
   },
 
