@@ -188,6 +188,7 @@ const game = {
         game.hideDrop();
         this.elements.sound.pause();
         alert(`Great! Your result ${this.elements.score.textContent}!`);
+        location.reload();
       }
     }, 1000);
   },
