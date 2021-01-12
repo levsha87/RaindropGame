@@ -102,10 +102,20 @@ display: none;
 }
 
 button {
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 60px;
   font-family: 'Lato-BoldItalic';
   font-size: 16px;
+  border-radius: 50%;
+  outline: none;
+  background-color: rgba(248, 59, 59, 0.8);
+  border: 2px solid rgba(248, 59, 59, 0.6);
+  color: #f5f821d0;
+}
+
+button:active {
+  background-color: rgba(248, 59, 59, 0.4);
+  color: #f5f821;
 }
 
 .stones {
