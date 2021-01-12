@@ -1,3 +1,6 @@
+const playDuration = 30;
+
+
 const game = {
   buttons: {
     buttonPlay: null,
@@ -8,7 +11,7 @@ const game = {
     drop: null,
     keys: null,
     screen: null,
-    stone: null,
+    stones: null,
     score: null,
     sound: null,
     soundRightAnswer: null,
@@ -27,12 +30,6 @@ const game = {
     '/': 3,
   },
 
-  onePlayDuration: {
-    easy: 30,
-    medium: 240,
-    hard: 180,
-  },
-
   dropExpression: {
     firstNumber: null,
     secondNumber: null,
@@ -47,7 +44,7 @@ const game = {
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
-    this.elements.stone = document.querySelector('.stone');
+    this.elements.stones = document.querySelector('.stones');
     this.dropExpression.firstNumber = document.querySelector('.firstNumber');
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
@@ -162,7 +159,7 @@ const game = {
     this.elements.drop.style.setProperty(
       '--coordinataY',
       `${
-        this.elements.stone.getBoundingClientRect().y -
+        this.elements.stones.getBoundingClientRect().y -
         this.elements.drop.offsetHeight
       }px`
     );
@@ -173,12 +170,13 @@ const game = {
   },
 
   showHowToPlay: function () {
-    this.startTimeGame (this.onePlayDuration.easy = 10);
+    this.startTimeGame ();
     console.log('exit');
   },
 
   startTimeGame: function () {
-   let time = this.onePlayDuration.easy;
+   let time = playDuration;
+   console.log(time);
     this.playBackgroundSound();
     let timerId = setInterval(() => {
       time--;
