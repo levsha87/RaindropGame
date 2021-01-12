@@ -10,6 +10,7 @@ const game = {
   elements: {
     drop: null,
     keys: null,
+    userResponse: null,
     screen: null,
     stones: null,
     score: null,
@@ -35,7 +36,6 @@ const game = {
     secondNumber: null,
     currentOperator: null,
     expression: null,
-    userNumberAnswer: null,
   },
 
   init: function () {
@@ -74,20 +74,20 @@ const game = {
   },
 
   getNumberKey: function (e) {
-    this.elements.drop.userNumberAnswer = this.elements.screen.innerHTML;
-    let number = this.elements.drop.userNumberAnswer;
+    this.elements.userResponse = this.elements.screen.innerHTML;
+    let number = this.elements.userResponse;
     let newNumber = `${e.target.textContent}`;
     number += newNumber;
 
     if (number.length === 2 && number[0] === '0') {
       number = number.substring(1);
-      this.elements.drop.userNumberAnswer = number;
+      this.elements.userResponse = number;
     }
 
     switch (newNumber) {
       case 'Enter':
         number = number.substring(0, number.length - 5);
-        this.elements.drop.userNumberAnswer = number;
+        this.elements.userResponse = number;
         this.checkAnswer();
         number = 0;
         break;
@@ -97,12 +97,12 @@ const game = {
         if (number === '') {
           number = 0;
         }
-        this.elements.drop.userNumberAnswer = number;
+        this.elements.userResponse = number;
         break;
 
       case 'Del':
         number = 0;
-        this.elements.drop.userNumberAnswer = number;
+        this.elements.userResponse = number;
         break;
     }
     this.elements.screen.innerHTML = number;
@@ -217,7 +217,7 @@ const game = {
 
   checkAnswer: function () {
        if (
-      this.dropExpression.expression === +this.elements.drop.userNumberAnswer
+      this.dropExpression.expression === +this.elements.userResponse
     ) {
       console.log('right');
       game.stopMoveDropDown();
@@ -238,7 +238,7 @@ const game = {
 
   setNumberPlusToScreen: function () {
     let score = +this.elements.score.innerHTML;
-    score += +this.elements.drop.userNumberAnswer;
+    score += +this.elements.userResponse;
     this.elements.score.innerHTML = score;
   },
 
