@@ -1,5 +1,4 @@
-const playDuration = 30;
-
+const PLAY_DURATION = 30;
 
 const game = {
   buttons: {
@@ -10,13 +9,16 @@ const game = {
   elements: {
     drop: null,
     keys: null,
-    userResponse: null,
     screen: null,
     stones: null,
-    score: null,
     sound: null,
     soundRightAnswer: null,
     soundWrongAnswer: null,
+  },
+
+  gameState: {
+    userResponse: null,
+    score: null,
   },
 
   numericRange: {
@@ -48,7 +50,7 @@ const game = {
     this.dropExpression.firstNumber = document.querySelector('.firstNumber');
     this.dropExpression.secondNumber = document.querySelector('.secondNumber');
     this.dropExpression.currentOperator = document.querySelector('.operator');
-    this.elements.score = document.querySelector('.score__number');
+    this.gameState.score = document.querySelector('.score__number');
     this.elements.sound = document.querySelector('.rains_sound');
     this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
     this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
@@ -74,20 +76,20 @@ const game = {
   },
 
   getNumberKey: function (e) {
-    this.elements.userResponse = this.elements.screen.innerHTML;
-    let number = this.elements.userResponse;
+    this.gameState.userResponse = this.elements.screen.innerHTML;
+    let number = this.gameState.userResponse;
     let newNumber = `${e.target.textContent}`;
     number += newNumber;
 
     if (number.length === 2 && number[0] === '0') {
       number = number.substring(1);
-      this.elements.userResponse = number;
+      this.gameState.userResponse = number;
     }
 
     switch (newNumber) {
       case 'Enter':
         number = number.substring(0, number.length - 5);
-        this.elements.userResponse = number;
+        this.gameState.userResponse = number;
         this.checkAnswer();
         number = 0;
         break;
@@ -97,12 +99,12 @@ const game = {
         if (number === '') {
           number = 0;
         }
-        this.elements.userResponse = number;
+        this.gameState.userResponse = number;
         break;
 
       case 'Del':
         number = 0;
-        this.elements.userResponse = number;
+        this.gameState.userResponse = number;
         break;
     }
     this.elements.screen.innerHTML = number;
@@ -170,13 +172,13 @@ const game = {
   },
 
   showHowToPlay: function () {
-    this.startTimeGame ();
+    this.startTimeGame();
     console.log('exit');
   },
 
   startTimeGame: function () {
-   let time = playDuration;
-   console.log(time);
+    let time = PLAY_DURATION;
+    console.log(time);
     this.playBackgroundSound();
     let timerId = setInterval(() => {
       time--;
@@ -186,7 +188,7 @@ const game = {
         game.stopMoveDropDown();
         game.hideDrop();
         this.elements.sound.pause();
-        alert(`Great! Your result ${this.elements.score.textContent}!`);
+        alert(`Great! Your result ${this.gameState.score.textContent}!`);
         location.reload();
       }
     }, 1000);
@@ -216,37 +218,39 @@ const game = {
   },
 
   checkAnswer: function () {
-       if (
-      this.dropExpression.expression === +this.elements.userResponse
-    ) {
+    if (this.dropExpression.expression === +this.gameState.userResponse) {
       console.log('right');
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundRightAnswer.play();
       this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
-      setTimeout( () => {moveDrop();});
+      setTimeout(() => {
+        moveDrop();
+      });
     } else {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
       this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
-      setTimeout( () => {moveDrop();});
+      setTimeout(() => {
+        moveDrop();
+      });
     }
   },
 
   setNumberPlusToScreen: function () {
-    let score = +this.elements.score.innerHTML;
-    score += +this.elements.userResponse;
-    this.elements.score.innerHTML = score;
+    let score = +this.gameState.score.innerHTML;
+    score += +this.gameState.userResponse;
+    this.gameState.score.innerHTML = score;
   },
 
   setNumberMinusToScreen: function () {
-    let score = +this.elements.score.innerHTML;
-      score -= +this.dropExpression.expression;
-      this.elements.score.innerHTML = score;
-  }
+    let score = +this.gameState.score.innerHTML;
+    score -= +this.dropExpression.expression;
+    this.gameState.score.innerHTML = score;
+  },
 };
 
 game.init();
@@ -274,7 +278,7 @@ function moveDrop() {
   game.elements.drop.addEventListener('transitionend', function () {
     game.stopMoveDropDown();
     game.hideDrop();
-    setTimeout( () => {
+    setTimeout(() => {
       moveDrop();
     }, 1);
   });
