@@ -67,29 +67,34 @@ const game = {
 
   getRandomOperator: function () {
     let numberOperator = Math.round(
-      Math.random() * (this.numericRangeChooseRandomOperator.max - this.numericRangeChooseRandomOperator.min) +
-      this.numericRangeChooseRandomOperator.min
+      Math.random() *
+        (this.numericRangeChooseRandomOperator.max -
+          this.numericRangeChooseRandomOperator.min) +
+        this.numericRangeChooseRandomOperator.min
     );
     switch (numberOperator) {
-      case 0: 
-      return '+';
-       
-      case 1: 
-      return '-';
+      case 0:
+        return '+';
 
-      case 2: 
-      return '*';
+      case 1:
+        return '-';
 
-      case 3: 
-      return '/';
+      case 2:
+        return '*';
+
+      case 3:
+        return '/';
     }
   },
 
   getNumberKey: function (e) {
+    console.log(e, e.target, typeof +e.target.textContent);
     this.gameState.userResponse = this.elements.screen.innerHTML;
     let number = this.gameState.userResponse;
     let newNumber = `${e.target.textContent}`;
+    console.log(typeof newNumber);
     number += newNumber;
+    console.log(typeof number);
 
     if (number.length === 2 && number[0] === '0') {
       number = number.substring(1);
@@ -136,10 +141,12 @@ const game = {
         this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         if (firstNumber >= secondNumber) {
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
-        this.gameState.secondNumberDrop.innerHTML = secondNumber;
-        this.gameState.expressionDrop = firstNumber - secondNumber;
+          this.gameState.secondNumberDrop.innerHTML = secondNumber;
+          this.gameState.expressionDrop = firstNumber - secondNumber;
         } else {
-          this.buildExpression();
+          this.gameState.firstNumberDrop.innerHTML = secondNumber;
+          this.gameState.secondNumberDrop.innerHTML = firstNumber;
+          this.gameState.expressionDrop = secondNumber - firstNumber;
         }
         break;
 
@@ -154,8 +161,8 @@ const game = {
         if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
           this.gameState.currentOperatorDrop.innerHTML = '÷';
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
-        this.gameState.secondNumberDrop.innerHTML = secondNumber;
-        this.gameState.expressionDrop = firstNumber / secondNumber;
+          this.gameState.secondNumberDrop.innerHTML = secondNumber;
+          this.gameState.expressionDrop = firstNumber / secondNumber;
         } else {
           this.buildExpression();
         }
