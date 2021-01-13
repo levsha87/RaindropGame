@@ -30,11 +30,9 @@ const game = {
     max: 10,
   },
 
-  operatorMath: {
-    '+': 0,
-    '-': 1,
-    '*': 2,
-    '/': 3,
+  numericRangeChooseRandomOperator: {
+    min: 0,
+    max: 3,
   },
 
   init: function () {
@@ -68,10 +66,23 @@ const game = {
   },
 
   getRandomOperator: function () {
-    return Math.round(
-      Math.random() * (this.operatorMath['+'] - this.operatorMath['/']) +
-        this.operatorMath['/']
+    let numberOperator = Math.round(
+      Math.random() * (this.numericRangeChooseRandomOperator.max - this.numericRangeChooseRandomOperator.min) +
+      this.numericRangeChooseRandomOperator.min
     );
+    switch (numberOperator) {
+      case 0: 
+      return '+';
+       
+      case 1: 
+      return '-';
+
+      case 2: 
+      return '*';
+
+      case 3: 
+      return '/';
+    }
   },
 
   getNumberKey: function (e) {
@@ -114,16 +125,14 @@ const game = {
     let firstNumber = this.getRandomNumber();
     let secondNumber = this.getRandomNumber();
     switch (currentOperator) {
-      case 0:
-        currentOperator = '+';
+      case '+':
         this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         this.gameState.firstNumberDrop.innerHTML = firstNumber;
         this.gameState.secondNumberDrop.innerHTML = secondNumber;
         this.gameState.expressionDrop = firstNumber + secondNumber;
         break;
 
-      case 1:
-        currentOperator = '-';
+      case '-':
         this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         if (firstNumber >= secondNumber) {
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
@@ -134,16 +143,14 @@ const game = {
         }
         break;
 
-      case 2:
-        currentOperator = '*';
+      case '*':
         this.gameState.currentOperatorDrop.innerHTML = '×';
         this.gameState.firstNumberDrop.innerHTML = firstNumber;
         this.gameState.secondNumberDrop.innerHTML = secondNumber;
         this.gameState.expressionDrop = firstNumber * secondNumber;
         break;
 
-      case 3:
-        currentOperator = '/';
+      case '/':
         if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
           this.gameState.currentOperatorDrop.innerHTML = '÷';
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
