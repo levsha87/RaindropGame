@@ -19,6 +19,10 @@ const game = {
   gameState: {
     userResponse: null,
     score: null,
+    firstNumberDrop: null,
+    secondNumberDrop: null,
+    currentOperatorDrop: null,
+    expressionDrop: null,
   },
 
   numericRange: {
@@ -33,27 +37,22 @@ const game = {
     '/': 3,
   },
 
-  dropExpression: {
-    firstNumber: null,
-    secondNumber: null,
-    currentOperator: null,
-    expression: null,
-  },
-
   init: function () {
-    this.elements.drop = document.querySelector('.drop');
     this.buttons.buttonPlay = document.querySelector('.play');
     this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
+
+    this.elements.drop = document.querySelector('.drop');
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
     this.elements.stones = document.querySelector('.stones');
-    this.dropExpression.firstNumber = document.querySelector('.firstNumber');
-    this.dropExpression.secondNumber = document.querySelector('.secondNumber');
-    this.dropExpression.currentOperator = document.querySelector('.operator');
-    this.gameState.score = document.querySelector('.score__number');
     this.elements.sound = document.querySelector('.rains_sound');
     this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
     this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
+
+    this.gameState.firstNumberDrop = document.querySelector('.firstNumber');
+    this.gameState.secondNumberDrop = document.querySelector('.secondNumber');
+    this.gameState.currentOperatorDrop = document.querySelector('.operator');
+    this.gameState.score = document.querySelector('.score__number');
   },
 
   hideButtons: function () {
@@ -117,19 +116,19 @@ const game = {
     switch (currentOperator) {
       case 0:
         currentOperator = '+';
-        this.dropExpression.currentOperator.innerHTML = currentOperator;
-        this.dropExpression.firstNumber.innerHTML = firstNumber;
-        this.dropExpression.secondNumber.innerHTML = secondNumber;
-        this.dropExpression.expression = firstNumber + secondNumber;
+        this.gameState.currentOperatorDrop.innerHTML = currentOperator;
+        this.gameState.firstNumberDrop.innerHTML = firstNumber;
+        this.gameState.secondNumberDrop.innerHTML = secondNumber;
+        this.gameState.expressionDrop = firstNumber + secondNumber;
         break;
 
       case 1:
         currentOperator = '-';
-        this.dropExpression.currentOperator.innerHTML = currentOperator;
+        this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         if (firstNumber >= secondNumber) {
-          this.dropExpression.firstNumber.innerHTML = firstNumber;
-          this.dropExpression.secondNumber.innerHTML = secondNumber;
-          this.dropExpression.expression = firstNumber - secondNumber;
+          this.gameState.firstNumberDrop.innerHTML = firstNumber;
+        this.gameState.secondNumberDrop.innerHTML = secondNumber;
+        this.gameState.expressionDrop = firstNumber - secondNumber;
         } else {
           this.buildExpression();
         }
@@ -137,19 +136,19 @@ const game = {
 
       case 2:
         currentOperator = '*';
-        this.dropExpression.currentOperator.innerHTML = '×';
-        this.dropExpression.firstNumber.innerHTML = firstNumber;
-        this.dropExpression.secondNumber.innerHTML = secondNumber;
-        this.dropExpression.expression = firstNumber * secondNumber;
+        this.gameState.currentOperatorDrop.innerHTML = '×';
+        this.gameState.firstNumberDrop.innerHTML = firstNumber;
+        this.gameState.secondNumberDrop.innerHTML = secondNumber;
+        this.gameState.expressionDrop = firstNumber * secondNumber;
         break;
 
       case 3:
         currentOperator = '/';
         if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
-          this.dropExpression.currentOperator.innerHTML = '÷';
-          this.dropExpression.firstNumber.innerHTML = firstNumber;
-          this.dropExpression.secondNumber.innerHTML = secondNumber;
-          this.dropExpression.expression = firstNumber / secondNumber;
+          this.gameState.currentOperatorDrop.innerHTML = '÷';
+          this.gameState.firstNumberDrop.innerHTML = firstNumber;
+        this.gameState.secondNumberDrop.innerHTML = secondNumber;
+        this.gameState.expressionDrop = firstNumber / secondNumber;
         } else {
           this.buildExpression();
         }
@@ -157,7 +156,7 @@ const game = {
     }
   },
 
-  getCoordinateStoneTop: function () {
+  setCoordinateStoneTop: function () {
     this.elements.drop.style.setProperty(
       '--coordinataY',
       `${
@@ -201,7 +200,7 @@ const game = {
 
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
-    game.getCoordinateStoneTop();
+    game.setCoordinateStoneTop();
     this.getTimeDropDown();
   },
 
@@ -218,7 +217,7 @@ const game = {
   },
 
   checkAnswer: function () {
-    if (this.dropExpression.expression === +this.gameState.userResponse) {
+    if (this.gameState.expressionDrop === +this.gameState.userResponse) {
       console.log('right');
       game.stopMoveDropDown();
       game.hideDrop();
@@ -248,7 +247,7 @@ const game = {
 
   setNumberMinusToScreen: function () {
     let score = +this.gameState.score.innerHTML;
-    score -= +this.dropExpression.expression;
+    score -= +this.gameState.expressionDrop;
     this.gameState.score.innerHTML = score;
   },
 };
