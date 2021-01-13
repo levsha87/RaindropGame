@@ -288,10 +288,18 @@ function moveDrop() {
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
-    game.stopMoveDropDown();
-    game.hideDrop();
-    setTimeout(() => {
-      moveDrop();
-    }, 1);
+    if(
+      game.elements.stones.getBoundingClientRect().y ===
+      game.elements.drop.getBoundingClientRect().y + game.elements.drop.offsetHeight
+    ) {
+      game.stopMoveDropDown();
+      game.hideDrop();
+      game.elements.soundWrongAnswer.play();
+      game.elements.soundWrongAnswer.currentTime = 0;
+      game.setNumberMinusToScreen();
+      setTimeout(() => {
+        moveDrop();
+      });
+    } 
   });
 }
