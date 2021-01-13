@@ -87,42 +87,41 @@ const game = {
     }
   },
 
-  getNumberKey: function (e) {
-    console.log(e, e.target, typeof +e.target.textContent);
+  buildUserNumber: function (e) {
     this.gameState.userResponse = this.elements.screen.innerHTML;
-    let number = this.gameState.userResponse;
+    let currentNumber = this.gameState.userResponse;
     let newNumber = `${e.target.textContent}`;
-    console.log(typeof newNumber);
-    number += newNumber;
-    console.log(typeof number);
 
-    if (number.length === 2 && number[0] === '0') {
-      number = number.substring(1);
-      this.gameState.userResponse = number;
+    if (!isNaN(newNumber)) {
+      currentNumber += newNumber;
+    }
+
+    if (currentNumber[0] === '0') {
+      currentNumber = +currentNumber;
+      this.gameState.userResponse = currentNumber;
     }
 
     switch (newNumber) {
       case 'Enter':
-        number = number.substring(0, number.length - 5);
-        this.gameState.userResponse = number;
+        this.gameState.userResponse = currentNumber;
         this.checkAnswer();
-        number = 0;
+        currentNumber = 0;
         break;
 
       case 'Clear':
-        number = number.substring(0, number.length - 6);
-        if (number === '') {
-          number = 0;
+        currentNumber = currentNumber.substring(0, currentNumber.length - 1);
+        if (currentNumber === '') {
+          currentNumber = 0;
         }
-        this.gameState.userResponse = number;
+        this.gameState.userResponse = currentNumber;
         break;
 
       case 'Del':
-        number = 0;
-        this.gameState.userResponse = number;
+        currentNumber = 0;
+        this.gameState.userResponse = currentNumber;
         break;
     }
-    this.elements.screen.innerHTML = number;
+    this.elements.screen.innerHTML = currentNumber;
   },
 
   buildExpression: function () {
@@ -269,7 +268,7 @@ const game = {
 game.init();
 
 game.elements.keys.addEventListener('click', (e) => {
-  game.getNumberKey(e);
+  game.buildUserNumber(e);
 });
 
 game.buttons.buttonPlay.addEventListener('click', function () {
