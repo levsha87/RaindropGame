@@ -255,20 +255,18 @@ const game = {
 
   setNumberPlusToScreen: function () {
     let score = +this.gameState.score.innerHTML;
-    score += +this.gameState.userResponse;
+    score += 10;
     this.gameState.score.innerHTML = score;
   },
 
   setNumberMinusToScreen: function () {
     let score = +this.gameState.score.innerHTML;
-    score -= +this.gameState.expressionDrop;
+    score -= 5;
     this.gameState.score.innerHTML = score;
   },
 };
 
 game.init();
-
-
 
 game.buttons.buttonPlay.addEventListener('click', function () {
   game.elements.keys.addEventListener('click', (e) => {
@@ -306,7 +304,3 @@ function moveDrop() {
     }
   });
 }
-
-
-  
-  
