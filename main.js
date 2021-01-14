@@ -262,6 +262,9 @@ const game = {
   setNumberMinusToScreen: function () {
     let score = +this.gameState.score.innerHTML;
     score -= 5;
+    if (score < 0) {
+      score = 0;
+    }
     this.gameState.score.innerHTML = score;
   },
 };
