@@ -18,6 +18,7 @@ const game = {
 
   gameState: {
     userResponse: null,
+    userWrongResponse: 0,
     score: null,
     firstNumberDrop: null,
     secondNumberDrop: null,
@@ -87,7 +88,7 @@ const game = {
     }
   },
 
-  buildUserNumber: function (e) {
+  compileUserNumber: function (e) {
     this.gameState.userResponse = this.elements.screen.innerHTML;
     let currentNumber = this.gameState.userResponse;
     let newNumber = `${e.target.textContent}`;
@@ -267,11 +268,12 @@ const game = {
 
 game.init();
 
-game.elements.keys.addEventListener('click', (e) => {
-  game.buildUserNumber(e);
-});
+
 
 game.buttons.buttonPlay.addEventListener('click', function () {
+  game.elements.keys.addEventListener('click', (e) => {
+    game.compileUserNumber(e);
+  });
   game.hideButtons();
   game.startTimeGame();
   moveDrop();
@@ -288,9 +290,10 @@ function moveDrop() {
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
-    if(
+    if (
       game.elements.stones.getBoundingClientRect().y ===
-      game.elements.drop.getBoundingClientRect().y + game.elements.drop.offsetHeight
+      game.elements.drop.getBoundingClientRect().y +
+        game.elements.drop.offsetHeight
     ) {
       game.stopMoveDropDown();
       game.hideDrop();
@@ -300,6 +303,10 @@ function moveDrop() {
       setTimeout(() => {
         moveDrop();
       });
-    } 
+    }
   });
 }
+
+
+  
+  
