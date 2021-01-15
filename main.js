@@ -22,6 +22,7 @@ const game = {
     userResponse: null,
     userWrongResponse: 0,
     score: null,
+    counterWrongAnswer: 0,
     firstNumberDrop: null,
     secondNumberDrop: null,
     currentOperatorDrop: null,
@@ -267,9 +268,21 @@ const game = {
       this.elements.soundWrongAnswer.play();
       this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
+      this.countWrongUserAnswer();
       setTimeout(() => {
         moveDrop();
       });
+    }
+  },
+
+  countWrongUserAnswer: function () {
+    this.gameState.counterWrongAnswer++;
+    if (this.gameState.counterWrongAnswer === 3) {
+      game.stopMoveDropDown();
+      game.hideDrop();
+      this.elements.sound.pause();
+      alert(`Great! Your result ${this.gameState.score.textContent}!`);
+      location.reload();
     }
   },
 
@@ -311,13 +324,13 @@ function moveDrop() {
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
-      game.stopMoveDropDown();
-      game.hideDrop();
-      game.elements.soundWrongAnswer.play();
-      game.elements.soundWrongAnswer.currentTime = 0;
-      game.setNumberMinusToScreen();
-      setTimeout(() => {
-        moveDrop();
-      });
+    game.stopMoveDropDown();
+    game.hideDrop();
+    game.elements.soundWrongAnswer.play();
+    game.elements.soundWrongAnswer.currentTime = 0;
+    game.setNumberMinusToScreen();
+    setTimeout(() => {
+      moveDrop();
+    });
   });
 }
