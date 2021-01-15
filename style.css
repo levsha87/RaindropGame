@@ -1,8 +1,7 @@
 :root {
---coordinataY: 300px;
---timeDropDown: 4s;
+  --coordinataY: 300px;
+  --timeDropDown: 4s;
 }
-
 
 @font-face {
   font-family: 'Lato-Bold';
@@ -50,16 +49,15 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background: rgb(97,121,223);
-  background: linear-gradient(0deg, rgba(97,121,223,1) 0%, rgba(97,201,223,1) 15%, rgba(97,220,223,1) 36%, rgba(177,252,248,1) 57%, rgba(229,249,248,1) 81%);
-}
-
-.wrapper_button {
-width: 100%;
-height: 200px;
-display: flex;
-justify-content: space-around;
-align-items: center;
+  background: rgb(97, 121, 223);
+  background: linear-gradient(
+    0deg,
+    rgba(97, 121, 223, 1) 0%,
+    rgba(97, 201, 223, 1) 15%,
+    rgba(97, 220, 223, 1) 36%,
+    rgba(177, 252, 248, 1) 57%,
+    rgba(229, 249, 248, 1) 81%
+  );
 }
 
 .drop {
@@ -84,7 +82,7 @@ align-items: center;
   font-size: 30px;
 }
 
-.dropContainerNumbers{
+.dropContainerNumbers {
   display: flex;
   flex-direction: column;
   font-size: 24px;
@@ -98,7 +96,15 @@ align-items: center;
 }
 
 .drop.hidden {
-display: none;
+  display: none;
+}
+
+.wrapper_button {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 button {
@@ -132,25 +138,40 @@ button:active {
   display: block;
   width: 50px;
   height: 50px;
-  background: rgb(30,30,31);
-  background: linear-gradient(0deg, rgba(30,30,31,1) 1%, rgba(42,46,50,1) 28%, rgba(72,78,77,1) 62%);
-  border-radius: 65% 35% 69% 31% / 48% 65% 35% 52% ;
+  background: rgb(30, 30, 31);
+  background: linear-gradient(
+    0deg,
+    rgba(30, 30, 31, 1) 1%,
+    rgba(42, 46, 50, 1) 28%,
+    rgba(72, 78, 77, 1) 62%
+  );
+  border-radius: 65% 35% 69% 31% / 48% 65% 35% 52%;
 }
 
 .stone__2 {
   display: block;
   width: 70px;
   height: 80px;
-  background: rgb(42,46,50);
-  background: linear-gradient(306deg, rgba(42,46,50,1) 0%, rgba(72,78,77,1) 25%, rgba(130,196,185,1) 55%);
+  background: rgb(42, 46, 50);
+  background: linear-gradient(
+    306deg,
+    rgba(42, 46, 50, 1) 0%,
+    rgba(72, 78, 77, 1) 25%,
+    rgba(130, 196, 185, 1) 55%
+  );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 }
 .stone__3 {
   display: block;
   width: 110px;
   height: 100px;
-  background: rgb(37,56,74);
-  background: linear-gradient(49deg, rgba(37,56,74,1) 2%, rgba(41,79,73,1) 34%, rgba(26,106,93,1) 68%);
+  background: rgb(37, 56, 74);
+  background: linear-gradient(
+    49deg,
+    rgba(37, 56, 74, 1) 2%,
+    rgba(41, 79, 73, 1) 34%,
+    rgba(26, 106, 93, 1) 68%
+  );
   border-radius: 46% 54% 53% 47% / 77% 78% 22% 23%;
 }
 
@@ -158,8 +179,13 @@ button:active {
   display: block;
   width: 70px;
   height: 80px;
-  background: rgb(39,119,195);
-  background: linear-gradient(126deg, rgba(39,119,195,1) 2%, rgba(41,79,73,1) 44%, rgba(176,200,209,1) 68%);
+  background: rgb(39, 119, 195);
+  background: linear-gradient(
+    126deg,
+    rgba(39, 119, 195, 1) 2%,
+    rgba(41, 79, 73, 1) 44%,
+    rgba(176, 200, 209, 1) 68%
+  );
   border-radius: 46% 54% 53% 47% / 77% 41% 59% 23%;
 }
 
@@ -167,16 +193,53 @@ button:active {
   display: block;
   width: 50px;
   height: 50px;
-  background: rgb(30,30,31);
-  background: linear-gradient(0deg, rgba(30,30,31,1) 1%, rgba(42,46,50,1) 28%, rgba(72,78,77,1) 62%);
+  background: rgb(30, 30, 31);
+  background: linear-gradient(
+    0deg,
+    rgba(30, 30, 31, 1) 1%,
+    rgba(42, 46, 50, 1) 28%,
+    rgba(72, 78, 77, 1) 62%
+  );
   border-radius: 46% 54% 53% 47% / 32% 55% 45% 68%;
 }
 
 .wave {
   width: 100%;
-  height: 20%;
-  background-image: linear-gradient(to bottom, rgba(124, 133, 237, 0.6), rgba(120, 135, 231, 0.6), rgba(117, 136, 225, 0.6), rgba(113, 138, 219, 0.6), rgba(110, 139, 213, 0.6), rgba(106, 141, 207, 0.6), rgba(99, 124, 207, 0.6), rgba(92, 108, 206, 0.6), rgba(85, 91, 206, 0.6), rgba(77, 74, 205, 0.6), rgba(70, 58, 205, 0.6), rgba(54, 42, 131, 0.6));
+  height: 100px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(124, 133, 237, 0.4),
+    rgba(120, 135, 231, 0.45),
+    rgba(117, 136, 225, 0.5),
+    rgba(113, 138, 219, 0.55),
+    rgba(110, 139, 213, 0.6),
+    rgba(106, 141, 207, 0.55),
+    rgba(99, 124, 207, 0.5),
+    rgba(92, 108, 206, 0.45),
+    rgba(85, 91, 206, 0.4),
+    rgba(77, 74, 205, 0.45),
+    rgba(70, 58, 205, 0.5),
+    rgba(54, 42, 131, 0.55)
+  );
 }
+
+.wave_animation {
+  display: block;
+  width: 140%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* @keyframes waving{
+  from {
+    margin-left: 10%;
+  }
+
+  to {
+    margin-left: -10%;
+  }
+} */
+
 
 .entryField {
   width: 30%;
@@ -184,12 +247,12 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(205, 237, 243, 0.89);
+  background-color: rgb(205, 237, 243);
 }
-.star img{
-width: 30px;
-height: 30px;
-padding-right: 15px;
+.star img {
+  width: 30px;
+  height: 30px;
+  padding-right: 15px;
 }
 
 .score {
@@ -306,7 +369,7 @@ padding-right: 15px;
   cursor: pointer;
 }
 
-.key:active{
+.key:active {
   background-color: rgba(239, 253, 239, 0.2);
 }
 

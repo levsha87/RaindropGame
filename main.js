@@ -11,6 +11,8 @@ const game = {
     keys: null,
     screen: null,
     stones: null,
+    wave: null,
+    waveDirection: true,
     sound: null,
     soundRightAnswer: null,
     soundWrongAnswer: null,
@@ -44,6 +46,7 @@ const game = {
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
     this.elements.stones = document.querySelector('.stones');
+    this.elements.wave = document.querySelector('.wave_animation');
     this.elements.sound = document.querySelector('.rains_sound');
     this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
     this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
@@ -90,6 +93,7 @@ const game = {
 
   compileUserNumber: function (e) {
     this.gameState.userResponse = this.elements.screen.innerHTML;
+
     let currentNumber = this.gameState.userResponse;
     let newNumber = `${e.target.textContent}`;
 
@@ -189,10 +193,26 @@ const game = {
     console.log('exit');
   },
 
+  moveWave: function () {
+    let x = 0;
+    let timeWave = setInterval(() => {
+      if (x >= 120 || x < 0) {
+        this.elements.waveDirection = !this.elements.waveDirection;
+      }
+      if (this.elements.waveDirection) {
+        x++;
+      } else {
+        x--;
+      }
+      this.elements.wave.setAttribute('viewBox', `${x} 0 500 150`);
+    }, 30);
+  },
+
   startTimeGame: function () {
     let time = PLAY_DURATION;
     console.log(time);
     this.playBackgroundSound();
+    game.moveWave();
     let timerId = setInterval(() => {
       time--;
       console.log(time);
@@ -291,11 +311,6 @@ function moveDrop() {
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
-    if (
-      game.elements.stones.getBoundingClientRect().y ===
-      game.elements.drop.getBoundingClientRect().y +
-        game.elements.drop.offsetHeight
-    ) {
       game.stopMoveDropDown();
       game.hideDrop();
       game.elements.soundWrongAnswer.play();
@@ -304,6 +319,5 @@ function moveDrop() {
       setTimeout(() => {
         moveDrop();
       });
-    }
   });
 }
