@@ -186,7 +186,7 @@ const game = {
   },
 
   getTimeDropDown: function () {
-    this.elements.drop.style.setProperty('--timeDropDown', '10s');
+    this.elements.drop.style.setProperty('--timeDropDown', '6s');
   },
 
   showHowToPlay: function () {
@@ -195,18 +195,7 @@ const game = {
   },
 
   moveWave: function () {
-    let x = 0;
-    let timeWave = setInterval(() => {
-      if (x >= 120 || x < 0) {
-        this.elements.waveDirection = !this.elements.waveDirection;
-      }
-      if (this.elements.waveDirection) {
-        x++;
-      } else {
-        x--;
-      }
-      this.elements.wave.setAttribute('viewBox', `${x} 0 500 150`);
-    }, 30);
+    this.elements.wave.classList.add('move');
   },
 
   startTimeGame: function () {
@@ -334,3 +323,11 @@ function moveDrop() {
     });
   });
 }
+
+game.elements.wave.addEventListener('transitionend', function () {
+  if (game.elements.wave.classList.contains('move')) {
+    game.elements.wave.classList.remove('move');
+  } else {
+    game.moveWave();
+  }
+});

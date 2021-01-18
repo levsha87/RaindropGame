@@ -221,24 +221,20 @@ button:active {
     rgba(70, 58, 205, 0.5),
     rgba(54, 42, 131, 0.55)
   );
+  overflow: hidden;
 }
 
 .wave_animation {
   display: block;
   width: 140%;
   height: 100%;
-  overflow: hidden;
+  transform: translateX(-200px);
+  transition: all 4s ease-in-out;
 }
 
-/* @keyframes waving{
-  from {
-    margin-left: 10%;
-  }
-
-  to {
-    margin-left: -10%;
-  }
-} */
+.wave_animation.move {
+ transform: translateX(0px);
+}
 
 
 .entryField {
@@ -249,6 +245,7 @@ button:active {
   align-items: center;
   background-color: rgb(205, 237, 243);
 }
+
 .star img {
   width: 30px;
   height: 30px;
