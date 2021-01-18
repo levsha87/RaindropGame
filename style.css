@@ -228,14 +228,18 @@ button:active {
   display: block;
   width: 140%;
   height: 100%;
-  transform: translateX(-200px);
-  transition: all 4s ease-in-out;
+  animation: 4s linear 0s infinite alternate maveAnimation;
+  animation-play-state : paused;
 }
 
-.wave_animation.move {
- transform: translateX(0px);
+@keyframes maveAnimation {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(0px);
+  }
 }
-
 
 .entryField {
   width: 30%;

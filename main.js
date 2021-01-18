@@ -1,4 +1,4 @@
-const PLAY_DURATION = 30;
+const PLAY_DURATION = 10;
 
 const game = {
   buttons: {
@@ -194,25 +194,32 @@ const game = {
     console.log('exit');
   },
 
-  moveWave: function () {
-    this.elements.wave.classList.add('move');
+  startWaveAnimation: function () {
+    this.elements.wave.style.animationPlayState = 'running';
+  },
+
+  stopWaveAnimation: function () {
+    this.elements.wave.style.animationPlayState = 'paused';
   },
 
   startTimeGame: function () {
     let time = PLAY_DURATION;
     console.log(time);
     this.playBackgroundSound();
-    game.moveWave();
+    game.startWaveAnimation();
     let timerId = setInterval(() => {
       time--;
       console.log(time);
       if (time === 0) {
+        game.stopWaveAnimation();
         clearInterval(timerId);
         game.stopMoveDropDown();
         game.hideDrop();
         this.elements.sound.pause();
         alert(`Great! Your result ${this.gameState.score.textContent}!`);
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 1000); 
       }
     }, 1000);
   },
@@ -299,6 +306,7 @@ game.buttons.buttonPlay.addEventListener('click', function () {
   });
   game.hideButtons();
   game.startTimeGame();
+  game.startWaveAnimation();
   moveDrop();
 });
 
@@ -324,10 +332,3 @@ function moveDrop() {
   });
 }
 
-game.elements.wave.addEventListener('transitionend', function () {
-  if (game.elements.wave.classList.contains('move')) {
-    game.elements.wave.classList.remove('move');
-  } else {
-    game.moveWave();
-  }
-});
