@@ -405,3 +405,9 @@ button:active {
 .key.high:active {
   background-color: rgba(239, 253, 239, 0.2);
 }
+
+.how_to_play {
+  display: none;
+  position: absolute;
+  width: 80%;
+}

@@ -16,6 +16,7 @@ const game = {
     sound: null,
     soundRightAnswer: null,
     soundWrongAnswer: null,
+    videoHowPlay: null,
   },
 
   gameState: {
@@ -41,7 +42,7 @@ const game = {
 
   init: function () {
     this.buttons.buttonPlay = document.querySelector('.play');
-    this.buttons.buttonShowHowPlay = document.querySelector('.howToPlay');
+    this.buttons.buttonShowHowPlay = document.querySelector('.how_play');
 
     this.elements.drop = document.querySelector('.drop');
     this.elements.keys = document.querySelector('.keys');
@@ -51,6 +52,7 @@ const game = {
     this.elements.sound = document.querySelector('.rains_sound');
     this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
     this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
+    this.elements.videoHowPlay = document.querySelector('.how_to_play');
 
     this.gameState.firstNumberDrop = document.querySelector('.firstNumber');
     this.gameState.secondNumberDrop = document.querySelector('.secondNumber');
@@ -61,6 +63,22 @@ const game = {
   hideButtons: function () {
     this.buttons.buttonPlay.style.display = 'none';
     this.buttons.buttonShowHowPlay.style.display = 'none';
+  },
+
+  showButtons: function () {
+    this.buttons.buttonPlay.style.display = 'block';
+    this.buttons.buttonShowHowPlay.style.display = 'block';
+  },
+
+  showHowToPlay: function () {
+    this.elements.videoHowPlay.style.display = 'block';
+    this.elements.videoHowPlay.play();
+  },
+
+  stopVideoHowToPlay: function () {
+    this.elements.videoHowPlay.pause();
+    this.elements.videoHowPlay.style.display = 'none';
+    this.showButtons();
   },
 
   getRandomNumber: function () {
@@ -189,11 +207,6 @@ const game = {
     this.elements.drop.style.setProperty('--timeDropDown', '6s');
   },
 
-  showHowToPlay: function () {
-    this.startTimeGame();
-    console.log('exit');
-  },
-
   startWaveAnimation: function () {
     this.elements.wave.style.animationPlayState = 'running';
   },
@@ -219,7 +232,7 @@ const game = {
         alert(`Great! Your result ${this.gameState.score.textContent}!`);
         setTimeout(() => {
           location.reload();
-        }, 1000); 
+        }, 1000);
       }
     }, 1000);
   },
@@ -310,10 +323,13 @@ game.buttons.buttonPlay.addEventListener('click', function () {
   moveDrop();
 });
 
-game.buttons.buttonShowHowPlay.addEventListener('click', function () {
+game.buttons.buttonShowHowPlay.addEventListener('click', (e) => {
   game.hideButtons();
-  moveDrop();
   game.showHowToPlay();
+});
+
+game.elements.videoHowPlay.addEventListener('ended', () => {
+  game.stopVideoHowToPlay();
 });
 
 function moveDrop() {
@@ -331,4 +347,3 @@ function moveDrop() {
     });
   });
 }
-

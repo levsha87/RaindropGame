@@ -12,7 +12,7 @@
       <section class="fieldPlay">
         <div class="wrapper_button">
           <button class="play">Play</button>
-          <button class="howToPlay">How To Play</button>
+          <button class="how_play">How To Play</button>
         </div>
         <div class="drop hidden">
           <span class="operator">+</span>
@@ -32,23 +32,21 @@
           <span class="stone__4"></span>
         </div>
         <div class="wave">
-            <svg
+          <svg
             class="wave_animation"
             viewBox="0 0 500 150"
             preserveAspectRatio="none"
           >
-            <path 
+            <path
               d="M-3.10,67 C294.86,149 178,-94 503,82 L500.00,150.00 L0.00,150.00 Z"
               style="stroke: none; fill: rgba(0, 136, 255, 0.849)"
             ></path>
             <path
               d="M0.00,47 C108.63,-49 329.28,191.94 504.22,75.48 L500.00,150.00 L0.00,150.00 Z"
-              style="stroke: none; fill: rgba(63, 137, 202, 0.884);"
+              style="stroke: none; fill: rgba(63, 137, 202, 0.884)"
             ></path>
           </svg>
-          
-          
-          </div>
+        </div>
       </section>
       <section class="entryField">
         <div class="score">
@@ -91,6 +89,13 @@
       class="wrong_answer"
       src="/assets/.mp3/zvukovoy-effekt-nepravilnogo-otveta-wrong-buzzer-sound-effect.mp3"
     ></audio>
+    <video class="how_to_play" type="video/mp4"
+    controls="controls">
+      <source
+        src="/assets/video/howPlay.mp4"
+        
+      />
+    </video>
     <script src="/main.js"></script>
   </body>
 </html>
