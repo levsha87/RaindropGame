@@ -1,6 +1,6 @@
 :root {
   --coordinataY: 300px;
-  --timeDropDown: 4s;
+  --timeDropDown: 10s;
 }
 
 @font-face {
@@ -221,7 +221,7 @@ button:active {
     rgba(70, 58, 205, 0.5),
     rgba(54, 42, 131, 0.55)
   );
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .wave_animation {

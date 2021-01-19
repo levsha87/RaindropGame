@@ -1,4 +1,9 @@
-const PLAY_DURATION = 10;
+const PLAY_DURATION = 180;
+const SPEED_DROP = {
+  SLOW: '10s',
+  MEDIUM: '8s',
+  FAST: '4s',
+};
 
 const game = {
   buttons: {
@@ -197,14 +202,31 @@ const game = {
     this.elements.drop.style.setProperty(
       '--coordinataY',
       `${
-        this.elements.stones.getBoundingClientRect().y -
-        this.elements.drop.offsetHeight
+        this.elements.stones.getBoundingClientRect().top -
+        this.elements.drop.getBoundingClientRect().height
       }px`
+    );
+    console.log(
+      this.elements.drop.getBoundingClientRect(),
+      this.elements.stones.getBoundingClientRect().top -
+        this.elements.drop.getBoundingClientRect().height
     );
   },
 
-  getTimeDropDown: function () {
-    this.elements.drop.style.setProperty('--timeDropDown', '6s');
+  setTimeDropDown: function (time) {
+    console.log(time);
+    let speed = SPEED_DROP.SLOW;
+    switch (true) {
+      case time <= 140 && time > 60:
+        speed = SPEED_DROP.MEDIUM;
+        break;
+
+      case time <= 60:
+        speed = SPEED_DROP.FAST;
+        break;
+    }
+    console.log(speed);
+    this.elements.drop.style.setProperty('--timeDropDown', speed);
   },
 
   startWaveAnimation: function () {
@@ -217,12 +239,13 @@ const game = {
 
   startTimeGame: function () {
     let time = PLAY_DURATION;
-    console.log(time);
+
     this.playBackgroundSound();
     game.startWaveAnimation();
+
     let timerId = setInterval(() => {
       time--;
-      console.log(time);
+      this.setTimeDropDown(time);
       if (time === 0) {
         game.stopWaveAnimation();
         clearInterval(timerId);
@@ -230,6 +253,7 @@ const game = {
         game.hideDrop();
         this.elements.sound.pause();
         alert(`Great! Your result ${this.gameState.score.textContent}!`);
+
         setTimeout(() => {
           location.reload();
         }, 1000);
@@ -245,7 +269,6 @@ const game = {
   showDrop: function () {
     this.elements.drop.classList.remove('hidden');
     game.setCoordinateStoneTop();
-    this.getTimeDropDown();
   },
 
   moveDropDown: function () {
@@ -266,18 +289,16 @@ const game = {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundRightAnswer.play();
-      this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
       setTimeout(() => {
         moveDrop();
       });
     } else {
+      this.countWrongUserAnswer();
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
-      this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
-      this.countWrongUserAnswer();
       setTimeout(() => {
         moveDrop();
       });
@@ -285,7 +306,7 @@ const game = {
   },
 
   countWrongUserAnswer: function () {
-    this.gameState.counterWrongAnswer++;
+    this.gameState.counterWrongAnswer = this.gameState.counterWrongAnswer + 1;
     if (this.gameState.counterWrongAnswer === 3) {
       game.stopMoveDropDown();
       game.hideDrop();
@@ -337,10 +358,15 @@ function moveDrop() {
   game.buildExpression();
   game.moveDropDown();
   game.elements.drop.addEventListener('transitionend', function () {
+    if (
+      Math.trunc(game.elements.drop.getBoundingClientRect().bottom) ===
+      Math.trunc(game.elements.stones.getBoundingClientRect().top)
+    ) {
+      game.countWrongUserAnswer();
+    }
     game.stopMoveDropDown();
     game.hideDrop();
     game.elements.soundWrongAnswer.play();
-    game.elements.soundWrongAnswer.currentTime = 0;
     game.setNumberMinusToScreen();
     setTimeout(() => {
       moveDrop();
