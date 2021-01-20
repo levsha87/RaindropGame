@@ -289,6 +289,7 @@ const game = {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundRightAnswer.play();
+      this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
       setTimeout(() => {
         moveDrop();
@@ -298,6 +299,7 @@ const game = {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
+      this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
       setTimeout(() => {
         moveDrop();
@@ -367,6 +369,7 @@ function moveDrop() {
     game.stopMoveDropDown();
     game.hideDrop();
     game.elements.soundWrongAnswer.play();
+    this.elements.soundWrongAnswer.currentTime = 0;
     game.setNumberMinusToScreen();
     setTimeout(() => {
       moveDrop();
