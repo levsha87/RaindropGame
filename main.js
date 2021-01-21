@@ -191,14 +191,13 @@ const game = {
         break;
 
       case DIVISION_SIGN:
-        if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
+        if (secondNumber !== 0) {
+          firstNumber = firstNumber * secondNumber;
           this.gameState.currentOperatorDrop.innerHTML = currentOperator;
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
           this.gameState.secondNumberDrop.innerHTML = secondNumber;
           this.gameState.expressionDrop = firstNumber / secondNumber;
-        } else {
-          this.buildExpression();
-        }
+        } 
         break;
     }
   },
