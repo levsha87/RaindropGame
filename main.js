@@ -1,4 +1,9 @@
 const PLAY_DURATION = 180;
+const MINUS = '-';
+const PLUS = '+';
+const MULTUPLICATION_SIGN = '×';
+const DIVISION_SIGN = '÷';
+
 const SPEED_DROP = {
   SLOW: '10s',
   MEDIUM: '8s',
@@ -102,16 +107,16 @@ const game = {
     );
     switch (numberOperator) {
       case 0:
-        return '+';
+        return PLUS;
 
       case 1:
-        return '-';
+        return MINUS;
 
       case 2:
-        return '*';
+        return MULTUPLICATION_SIGN;
 
       case 3:
-        return '/';
+        return DIVISION_SIGN;
     }
   },
 
@@ -158,14 +163,14 @@ const game = {
     let firstNumber = this.getRandomNumber();
     let secondNumber = this.getRandomNumber();
     switch (currentOperator) {
-      case '+':
+      case PLUS:
         this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         this.gameState.firstNumberDrop.innerHTML = firstNumber;
         this.gameState.secondNumberDrop.innerHTML = secondNumber;
         this.gameState.expressionDrop = firstNumber + secondNumber;
         break;
 
-      case '-':
+      case MINUS:
         this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         if (firstNumber >= secondNumber) {
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
@@ -178,16 +183,16 @@ const game = {
         }
         break;
 
-      case '*':
-        this.gameState.currentOperatorDrop.innerHTML = '×';
+      case MULTUPLICATION_SIGN:
+        this.gameState.currentOperatorDrop.innerHTML = currentOperator;
         this.gameState.firstNumberDrop.innerHTML = firstNumber;
         this.gameState.secondNumberDrop.innerHTML = secondNumber;
         this.gameState.expressionDrop = firstNumber * secondNumber;
         break;
 
-      case '/':
+      case DIVISION_SIGN:
         if (firstNumber % secondNumber === 0 && secondNumber !== 0) {
-          this.gameState.currentOperatorDrop.innerHTML = '÷';
+          this.gameState.currentOperatorDrop.innerHTML = currentOperator;
           this.gameState.firstNumberDrop.innerHTML = firstNumber;
           this.gameState.secondNumberDrop.innerHTML = secondNumber;
           this.gameState.expressionDrop = firstNumber / secondNumber;
