@@ -373,7 +373,7 @@ function moveDrop() {
     game.stopMoveDropDown();
     game.hideDrop();
     game.elements.soundWrongAnswer.play();
-    this.elements.soundWrongAnswer.currentTime = 0;
+    game.elements.soundWrongAnswer.currentTime = 0;
     game.setNumberMinusToScreen();
     setTimeout(() => {
       moveDrop();
