@@ -300,6 +300,7 @@ const game = {
       });
     } else {
       this.countWrongUserAnswer();
+      this.drownStonesWater();
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.soundWrongAnswer.play();
@@ -311,14 +312,38 @@ const game = {
     }
   },
 
+  drownStonesWater: function () {
+    switch (this.gameState.counterWrongAnswer) {
+      case 1:
+        for (let i = 0; i < this.elements.stones.children.length; i++) {
+          this.elements.stones.children[i].classList.add('drownOne');
+        }
+        break;
+    
+      case 2:
+        for (let i = 0; i < this.elements.stones.children.length; i++) {
+          this.elements.stones.children[i].classList.add('drownTwo');
+        }
+        break;
+
+      case 3:
+        for (let i = 0; i < this.elements.stones.children.length; i++) {
+          this.elements.stones.children[i].classList.add('drownThree');
+        }
+        break;   
+    }
+  },
+
   countWrongUserAnswer: function () {
     this.gameState.counterWrongAnswer = this.gameState.counterWrongAnswer + 1;
     if (this.gameState.counterWrongAnswer === 3) {
       game.stopMoveDropDown();
       game.hideDrop();
       this.elements.sound.pause();
-      alert(`Great! Your result ${this.gameState.score.textContent}!`);
-      location.reload();
+      setTimeout( () => {
+        alert(`Great! Your result ${this.gameState.score.textContent}!`);
+        location.reload();
+      }, 1500);
     }
   },
 
@@ -369,6 +394,7 @@ function moveDrop() {
       Math.trunc(game.elements.stones.getBoundingClientRect().top)
     ) {
       game.countWrongUserAnswer();
+      game.drownStonesWater();
     }
     game.stopMoveDropDown();
     game.hideDrop();

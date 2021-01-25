@@ -132,6 +132,23 @@ button:active {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  overflow: hidden;
+}
+
+.stones > * {
+  transition: all 1s ease-in-out;
+}
+
+.stones > *.drownOne {
+  transform: translateY(30%);
+}
+
+.stones > *.drownTwo {
+  transform: translateY(60%);
+}
+
+.stones > *.drownThree {
+  transform: translateY(100%);
 }
 
 .stone__1 {
@@ -161,6 +178,7 @@ button:active {
   );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 }
+
 .stone__3 {
   display: block;
   width: 110px;
@@ -229,7 +247,7 @@ button:active {
   width: 140%;
   height: 100%;
   animation: 4s linear 0s infinite alternate maveAnimation;
-  animation-play-state : paused;
+  animation-play-state: paused;
 }
 
 @keyframes maveAnimation {
@@ -415,7 +433,6 @@ button:active {
 /* ---------------------------стили для экранов max-width 991px-----------------------*/
 
 @media screen and (max-width: 991px) {
-
   .main {
     max-width: 768px;
     height: 100%;
@@ -432,7 +449,7 @@ button:active {
   .operator {
     font-size: 24px;
   }
-  
+
   .dropContainerNumbers {
     font-size: 20px;
   }
@@ -446,12 +463,12 @@ button:active {
   .stones {
     height: 80px;
   }
-  
+
   .stone__1 {
     width: 40px;
     height: 50%;
   }
-  
+
   .stone__2 {
     width: 60px;
     height: 80%;
@@ -461,12 +478,12 @@ button:active {
     width: 95px;
     height: 100%;
   }
-  
+
   .stone__4 {
     width: 60px;
     height: 80%;
   }
-  
+
   .stone__5 {
     width: 40px;
     height: 50%;
@@ -475,18 +492,18 @@ button:active {
   .wave {
     height: 90px;
   }
-  
+
   .wave_animation {
     width: 130%;
     height: 100%;
   }
-  
+
   @keyframes maveAnimation {
     from {
       transform: translateX(-160px);
     }
   }
-  
+
   .star img {
     width: 25px;
     height: 25px;
@@ -502,14 +519,14 @@ button:active {
     justify-content: space-around;
   }
 
-  .window__score h2 span{
+  .window__score h2 span {
     padding-top: 3px;
   }
 
   .controlPanel {
     height: 50%;
   }
-  
+
   .screen {
     width: 90.3%;
     height: 15%;
@@ -522,29 +539,29 @@ button:active {
     margin-top: 20px;
     margin-right: 3px;
   }
-  
+
   .keys {
     width: 92%;
     height: 70%;
     font-size: 25px;
   }
-  
+
   .key__number {
     font-size: 30px;
   }
-  
+
   .key {
     width: 31.5%;
   }
-  
+
   .key:last-child {
     font-size: 18px;
   }
-  
+
   .key-wide {
     width: 65%;
   }
-  
+
   .key.high {
     width: 96.4%;
     height: 50%;
@@ -558,9 +575,8 @@ button:active {
 @media screen and (max-width: 767px) {
   .main {
     max-width: 479px;
-
   }
-/*--------------------drop---------------*/
+  /*--------------------drop---------------*/
   .drop {
     width: 40px;
     height: 40px;
@@ -570,12 +586,12 @@ button:active {
   .operator {
     font-size: 18px;
   }
-  
+
   .dropContainerNumbers {
     font-size: 16px;
   }
 
-/*----------------buttons play and how to play----------------*/
+  /*----------------buttons play and how to play----------------*/
 
   button {
     width: 80px;
@@ -583,17 +599,17 @@ button:active {
     font-size: 12px;
   }
 
-/*------------------------------stones--------------*/
+  /*------------------------------stones--------------*/
 
   .stones {
     height: 55px;
   }
-  
+
   .stone__1 {
     width: 25px;
     height: 50%;
   }
-  
+
   .stone__2 {
     width: 40px;
     height: 80%;
@@ -603,26 +619,26 @@ button:active {
     width: 55px;
     height: 100%;
   }
-  
+
   .stone__4 {
     width: 40px;
     height: 80%;
   }
-  
+
   .stone__5 {
     width: 25px;
     height: 50%;
   }
-  
+
   .wave {
     height: 80px;
   }
-  
+
   .wave_animation {
     width: 130%;
     height: 100%;
   }
-  
+
   @keyframes maveAnimation {
     from {
       transform: translateX(-100px);
@@ -641,8 +657,10 @@ button:active {
     width: 100%;
     height: 20%;
   }
-  
-  .window__score, .score::before, .score::after {
+
+  .window__score,
+  .score::before,
+  .score::after {
     height: 25%;
   }
 
@@ -651,7 +669,7 @@ button:active {
     font-size: 16px;
   }
 
-  .window__score h2 span{
+  .window__score h2 span {
     font-size: 16px;
     padding-top: 1px;
   }
@@ -661,7 +679,7 @@ button:active {
   .controlPanel {
     height: 40%;
   }
-  
+
   .screen {
     width: 90%;
     height: 15%;
@@ -672,36 +690,35 @@ button:active {
     margin-right: 3px;
     font-size: 22px;
   }
-  
+
   .keys {
     width: 92%;
     height: 70%;
     font-size: 20px;
   }
-  
+
   .key__number {
     font-size: 16px;
   }
-  
+
   .key {
     width: 30%;
   }
-  
+
   .key:last-child {
     font-size: 14px;
   }
-  
+
   .key-wide {
     width: 64%;
   }
-  
+
   .key.high {
     width: 96%;
     height: 50%;
     font-size: 10px;
     border: 1px solid gray;
   }
-
 }
 
 /* ---------------------------стили для экранов max-width 479px-----------------------*/
@@ -709,7 +726,6 @@ button:active {
 @media screen and (max-width: 479px) {
   .main {
     max-width: 320px;
-
   }
 
   /*--------------------drop---------------*/
@@ -722,19 +738,19 @@ button:active {
   .operator {
     font-size: 14px;
   }
-  
+
   .dropContainerNumbers {
     font-size: 12px;
   }
 
-/*----------------buttons play and how to play----------------*/
+  /*----------------buttons play and how to play----------------*/
 
-.wrapper_button {
-  height: 140px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
+  .wrapper_button {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 
   button {
     width: 80px;
@@ -742,17 +758,17 @@ button:active {
     font-size: 10px;
   }
 
-/*------------------------------stones--------------*/
+  /*------------------------------stones--------------*/
 
   .stones {
     height: 45px;
   }
-  
+
   .stone__1 {
     width: 15px;
     height: 50%;
   }
-  
+
   .stone__2 {
     width: 25px;
     height: 80%;
@@ -762,26 +778,26 @@ button:active {
     width: 40px;
     height: 100%;
   }
-  
+
   .stone__4 {
     width: 25px;
     height: 80%;
   }
-  
+
   .stone__5 {
     width: 15px;
     height: 50%;
   }
-  
+
   .wave {
     height: 60px;
   }
-  
+
   .wave_animation {
     width: 140%;
     height: 100%;
   }
-  
+
   @keyframes maveAnimation {
     from {
       transform: translateX(-80px);
@@ -798,18 +814,20 @@ button:active {
     width: 100%;
     height: 15%;
   }
-  
-  .window__score, .score::before, .score::after  {
+
+  .window__score,
+  .score::before,
+  .score::after {
     height: 25%;
     border-bottom: 2px solid #ffffff;
   }
-  
+
   .window__score h2 {
     width: 100%;
     font-size: 13px;
   }
 
-  .window__score h2 span{
+  .window__score h2 span {
     font-size: 14px;
     padding-top: 1px;
   }
@@ -819,7 +837,7 @@ button:active {
   .controlPanel {
     height: 25%;
   }
-  
+
   .screen {
     width: 89%;
     height: 15%;
@@ -830,30 +848,30 @@ button:active {
     margin-right: 1px;
     font-size: 16px;
   }
-  
+
   .keys {
     width: 90%;
     height: 72%;
     font-size: 20px;
   }
-  
+
   .key__number {
     font-size: 14px;
   }
-  
+
   .key {
     width: 29%;
   }
-  
+
   .key:last-child {
     font-size: 10px;
     writing-mode: vertical-lr;
   }
-  
+
   .key-wide {
     width: 63%;
   }
-  
+
   .key.high {
     width: 96%;
     height: 50%;
@@ -861,5 +879,4 @@ button:active {
     border: 1px solid gray;
     writing-mode: vertical-lr;
   }
-
 }
