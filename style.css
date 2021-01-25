@@ -240,6 +240,7 @@ button:active {
     rgba(54, 42, 131, 0.55)
   );
   overflow-x: hidden;
+  transition: all 1s ease-in-out;
 }
 
 .wave_animation {

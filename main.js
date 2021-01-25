@@ -22,6 +22,7 @@ const game = {
     screen: null,
     stones: null,
     wave: null,
+    waveContainer: null,
     waveDirection: true,
     sound: null,
     soundRightAnswer: null,
@@ -58,6 +59,7 @@ const game = {
     this.elements.keys = document.querySelector('.keys');
     this.elements.screen = document.querySelector('.screen_number');
     this.elements.stones = document.querySelector('.stones');
+    this.elements.waveContainer = document.querySelector('.wave');
     this.elements.wave = document.querySelector('.wave_animation');
     this.elements.sound = document.querySelector('.rains_sound');
     this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
@@ -317,18 +319,21 @@ const game = {
       case 1:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownOne');
+          this.elements.waveContainer.style.height = '110px';
         }
         break;
     
       case 2:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownTwo');
+          this.elements.waveContainer.style.height = '120px';
         }
         break;
 
       case 3:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownThree');
+          this.elements.waveContainer.style.height = '130px';
         }
         break;   
     }
