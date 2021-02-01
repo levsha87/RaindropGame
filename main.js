@@ -212,7 +212,7 @@ const game = {
     this.elements.drop.style.setProperty(
       '--coordinataY',
       `${
-        this.elements.stones.getBoundingClientRect().top -
+        this.elements.stones.getBoundingClientRect().top  -
         this.elements.drop.getBoundingClientRect().height
       }px`
     );
@@ -289,7 +289,6 @@ const game = {
 
   checkAnswer: function () {
     if (this.gameState.expressionDrop === +this.gameState.userResponse) {
-      console.log('right');
       this.stopMoveDropDown();
       this.hideDrop();
       this.elements.soundRightAnswer.play();
@@ -300,7 +299,6 @@ const game = {
       });
     } else {
       this.countWrongUserAnswer();
-      console.log(this.gameState.counterWrongAnswer);
       this.stopMoveDropDown();
       this.hideDrop();
       this.elements.soundWrongAnswer.play();
@@ -308,7 +306,7 @@ const game = {
       this.setNumberMinusToScreen();
       setTimeout(() => {
         this.moveDrop();
-      });
+      }, 1000);
     }
   },
 
@@ -334,7 +332,6 @@ const game = {
           this.elements.waveContainer.style.height = `${this.elements.waveContainer.offsetHeight + DROWN_STEP_HEIGHT}px` ;
         }
         break;   
-
     }
   },
 
@@ -390,17 +387,17 @@ const game = {
   },
 
   moveDrop: function () {
+    
     this.showDrop();
     this.buildExpression();
     this.moveDropDown();
     this.elements.drop.addEventListener('transitionend',  () => {
-        this.checkAnswer();
-        this.stopMoveDropDown();
-        this.hideDrop();
-        this.elements.soundWrongAnswer.play();
-        this.elements.soundWrongAnswer.currentTime = 0;
-        this.setNumberMinusToScreen();
-        setTimeout(() => this.moveDrop());
+      if (
+        Math.trunc(game.elements.drop.getBoundingClientRect().bottom) ===
+        Math.trunc(game.elements.stones.getBoundingClientRect().top)
+        ) {
+          this.checkAnswer();
+        }
       });
   }
 };
