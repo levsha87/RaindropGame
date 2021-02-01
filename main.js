@@ -216,15 +216,9 @@ const game = {
         this.elements.drop.getBoundingClientRect().height
       }px`
     );
-    console.log(
-      this.elements.drop.getBoundingClientRect(),
-      this.elements.stones.getBoundingClientRect().top -
-        this.elements.drop.getBoundingClientRect().height
-    );
   },
 
   setTimeDropDown: function (time) {
-    console.log(time);
     let speed = SPEED_DROP.SLOW;
     switch (true) {
       case time <= TIME_TOGGLE_MIDDLE_LEVEL && time > TIME_TOGGLE_HARD_LEVEL:
@@ -235,7 +229,7 @@ const game = {
         speed = SPEED_DROP.FAST;
         break;
     }
-    console.log(speed);
+
     this.elements.drop.style.setProperty('--timeDropDown', speed);
   },
 
@@ -302,18 +296,18 @@ const game = {
       this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
       setTimeout(() => {
-        moveDrop();
+        this.moveDrop();
       });
     } else {
       this.countWrongUserAnswer();
-      this.drownStonesWater();
+      console.log(this.gameState.counterWrongAnswer);
       this.stopMoveDropDown();
       this.hideDrop();
       this.elements.soundWrongAnswer.play();
       this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
       setTimeout(() => {
-        moveDrop();
+        this.moveDrop();
       });
     }
   },
@@ -345,7 +339,8 @@ const game = {
   },
 
   countWrongUserAnswer: function () {
-    this.gameState.counterWrongAnswer = this.gameState.counterWrongAnswer + 1;
+    this.gameState.counterWrongAnswer += 1;
+    this.drownStonesWater();
     if (this.gameState.counterWrongAnswer === 3) {
       this.stopMoveDropDown();
       this.hideDrop();
@@ -380,45 +375,36 @@ const game = {
       this.hideButtons();
       this.startTimeGame();
       this.startWaveAnimation();
-      moveDrop();
+      this.moveDrop();
     });
   },
-  
-  
+ 
+  showVideoInstruction: function (){
+    this.buttons.buttonShowHowPlay.addEventListener('click', (e) => {
+      this.hideButtons();
+      this.showHowToPlay();
+    });
+    this.elements.videoHowPlay.addEventListener('ended', () => {
+      game.stopVideoHowToPlay();
+    });
+  },
+
+  moveDrop: function () {
+    this.showDrop();
+    this.buildExpression();
+    this.moveDropDown();
+    this.elements.drop.addEventListener('transitionend',  () => {
+        this.checkAnswer();
+        this.stopMoveDropDown();
+        this.hideDrop();
+        this.elements.soundWrongAnswer.play();
+        this.elements.soundWrongAnswer.currentTime = 0;
+        this.setNumberMinusToScreen();
+        setTimeout(() => this.moveDrop());
+      });
+  }
 };
 
 game.init();
 game.startGame();
-
-
-game.buttons.buttonShowHowPlay.addEventListener('click', (e) => {
-  game.hideButtons();
-  game.showHowToPlay();
-});
-
-game.elements.videoHowPlay.addEventListener('ended', () => {
-  game.stopVideoHowToPlay();
-});
-
-function moveDrop() {
-  game.showDrop();
-  game.buildExpression();
-  game.moveDropDown();
-  game.elements.drop.addEventListener('transitionend', function () {
-    if (
-      Math.trunc(game.elements.drop.getBoundingClientRect().bottom) ===
-      Math.trunc(game.elements.stones.getBoundingClientRect().top)
-    ) {
-      game.countWrongUserAnswer();
-      game.drownStonesWater();
-    }
-    game.stopMoveDropDown();
-    game.hideDrop();
-    game.elements.soundWrongAnswer.play();
-    game.elements.soundWrongAnswer.currentTime = 0;
-    game.setNumberMinusToScreen();
-    setTimeout(() => {
-      moveDrop();
-    });
-  });
-}
+game.showVideoInstruction();
