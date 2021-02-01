@@ -126,7 +126,7 @@ const game = {
     this.gameState.userResponse = this.elements.screen.innerHTML;
 
     let currentNumber = this.gameState.userResponse;
-    let newNumber = `${e.target.textContent}`;
+    const newNumber = `${e.target.textContent}`;
 
     if (!isNaN(newNumber)) {
       currentNumber += newNumber;
