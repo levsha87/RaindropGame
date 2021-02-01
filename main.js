@@ -14,6 +14,7 @@ const SPEED_DROP = {
 };
 
 const game = {
+
   buttons: {
     buttonPlay: null,
     buttonShowHowPlay: null,
@@ -250,16 +251,16 @@ const game = {
     let time = PLAY_DURATION;
 
     this.playBackgroundSound();
-    game.startWaveAnimation();
+    this.startWaveAnimation();
 
     let timerId = setInterval(() => {
       time--;
       this.setTimeDropDown(time);
       if (time === 0) {
-        game.stopWaveAnimation();
+        this.stopWaveAnimation();
         clearInterval(timerId);
-        game.stopMoveDropDown();
-        game.hideDrop();
+        this.stopMoveDropDown();
+        this.hideDrop();
         this.elements.sound.pause();
         alert(`Great! Your result ${this.gameState.score.textContent}!`);
 
@@ -277,7 +278,7 @@ const game = {
 
   showDrop: function () {
     this.elements.drop.classList.remove('drop_hidden');
-    game.setCoordinateStoneTop();
+    this.setCoordinateStoneTop();
   },
 
   moveDropDown: function () {
@@ -295,8 +296,8 @@ const game = {
   checkAnswer: function () {
     if (this.gameState.expressionDrop === +this.gameState.userResponse) {
       console.log('right');
-      game.stopMoveDropDown();
-      game.hideDrop();
+      this.stopMoveDropDown();
+      this.hideDrop();
       this.elements.soundRightAnswer.play();
       this.elements.soundRightAnswer.currentTime = 0;
       this.setNumberPlusToScreen();
@@ -306,8 +307,8 @@ const game = {
     } else {
       this.countWrongUserAnswer();
       this.drownStonesWater();
-      game.stopMoveDropDown();
-      game.hideDrop();
+      this.stopMoveDropDown();
+      this.hideDrop();
       this.elements.soundWrongAnswer.play();
       this.elements.soundWrongAnswer.currentTime = 0;
       this.setNumberMinusToScreen();
@@ -346,8 +347,8 @@ const game = {
   countWrongUserAnswer: function () {
     this.gameState.counterWrongAnswer = this.gameState.counterWrongAnswer + 1;
     if (this.gameState.counterWrongAnswer === 3) {
-      game.stopMoveDropDown();
-      game.hideDrop();
+      this.stopMoveDropDown();
+      this.hideDrop();
       this.elements.sound.pause();
       setTimeout( () => {
         alert(`Great! Your result ${this.gameState.score.textContent}!`);
@@ -370,19 +371,25 @@ const game = {
     }
     this.gameState.score.innerHTML = score;
   },
+
+  startGame: function () {
+    this.buttons.buttonPlay.addEventListener('click',  () => {
+      this.elements.keys.addEventListener('click', (e) => {
+        this.compileUserNumber(e);
+      });
+      this.hideButtons();
+      this.startTimeGame();
+      this.startWaveAnimation();
+      moveDrop();
+    });
+  },
+  
+  
 };
 
 game.init();
+game.startGame();
 
-game.buttons.buttonPlay.addEventListener('click', function () {
-  game.elements.keys.addEventListener('click', (e) => {
-    game.compileUserNumber(e);
-  });
-  game.hideButtons();
-  game.startTimeGame();
-  game.startWaveAnimation();
-  moveDrop();
-});
 
 game.buttons.buttonShowHowPlay.addEventListener('click', (e) => {
   game.hideButtons();
