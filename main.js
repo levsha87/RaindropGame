@@ -1,4 +1,7 @@
 const PLAY_DURATION = 180;
+const TIME_TOGGLE_MIDDLE_LEVEL = 140;
+const TIME_TOGGLE_HARD_LEVEL = 60;
+const DROWN_STEP_HEIGHT = 10;
 const MINUS = '-';
 const PLUS = '+';
 const MULTUPLICATION_SIGN = '×';
@@ -223,11 +226,11 @@ const game = {
     console.log(time);
     let speed = SPEED_DROP.SLOW;
     switch (true) {
-      case time <= 140 && time > 60:
+      case time <= TIME_TOGGLE_MIDDLE_LEVEL && time > TIME_TOGGLE_HARD_LEVEL:
         speed = SPEED_DROP.MEDIUM;
         break;
 
-      case time <= 60:
+      case time <= TIME_TOGGLE_HARD_LEVEL:
         speed = SPEED_DROP.FAST;
         break;
     }
@@ -319,23 +322,24 @@ const game = {
       case 1:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownOne');
-          this.elements.waveContainer.style.height = '110px';
+          this.elements.waveContainer.style.height = `${this.elements.waveContainer.offsetHeight + DROWN_STEP_HEIGHT}px` ;
         }
         break;
     
       case 2:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownTwo');
-          this.elements.waveContainer.style.height = '120px';
+          this.elements.waveContainer.style.height = `${this.elements.waveContainer.offsetHeight + DROWN_STEP_HEIGHT}px` ;
         }
         break;
 
       case 3:
         for (let i = 0; i < this.elements.stones.children.length; i++) {
           this.elements.stones.children[i].classList.add('drownThree');
-          this.elements.waveContainer.style.height = '130px';
+          this.elements.waveContainer.style.height = `${this.elements.waveContainer.offsetHeight + DROWN_STEP_HEIGHT}px` ;
         }
         break;   
+
     }
   },
 
