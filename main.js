@@ -392,14 +392,24 @@ const game = {
     this.buildExpression();
     this.moveDropDown();
     this.elements.drop.addEventListener('transitionend',  () => {
-      if (
-        Math.trunc(game.elements.drop.getBoundingClientRect().bottom) ===
-        Math.trunc(game.elements.stones.getBoundingClientRect().top)
-        ) {
+      if(this.checkFallDropStone())
+       {
           this.checkAnswer();
         }
       });
+  },
+
+  checkFallDropStone: function (){
+    if (
+      Math.trunc(game.elements.drop.getBoundingClientRect().bottom) ===
+      Math.trunc(game.elements.stones.getBoundingClientRect().top)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
   }
+
 };
 
 game.init();
