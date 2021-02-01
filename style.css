@@ -43,7 +43,7 @@ body {
   flex-direction: row;
 }
 
-.fieldPlay {
+.play-field {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -78,11 +78,11 @@ body {
   -o-transition: all var(--timeDropDown) ease-in-out; /** Opera **/
 }
 
-.operator {
+.drop-math-operator {
   font-size: 30px;
 }
 
-.dropContainerNumbers {
+.drop__numbers {
   display: flex;
   flex-direction: column;
   font-size: 24px;
@@ -95,11 +95,11 @@ body {
   -moz-transform: translateY(var(--coordinataY));
 }
 
-.drop.hidden {
+.drop_hidden {
   display: none;
 }
 
-.wrapper_button {
+.buttons {
   width: 100%;
   height: 200px;
   display: flex;
@@ -260,7 +260,7 @@ button:active {
   }
 }
 
-.entryField {
+.entry-field {
   width: 30%;
   height: 100%;
   display: flex;
@@ -269,20 +269,20 @@ button:active {
   background-color: rgb(205, 237, 243);
 }
 
-.star img {
+.window-score__star img {
   width: 30px;
   height: 30px;
   padding-right: 15px;
 }
 
-.score {
+.entry-field__score {
   width: 100%;
   height: 20%;
   display: flex;
   justify-content: center;
 }
 
-.window__score {
+.window-score {
   width: 70%;
   height: 30%;
   border-bottom: 3px solid #ffffff;
@@ -292,7 +292,7 @@ button:active {
   background-color: rgb(201, 233, 245);
 }
 
-.score::before {
+.entry-field__score::before {
   content: '';
   width: 10%;
   height: 30%;
@@ -304,7 +304,7 @@ button:active {
   background-color: rgb(201, 233, 245);
 }
 
-.score::after {
+.entry-field__score::after {
   content: '';
   width: 10%;
   height: 30%;
@@ -316,13 +316,13 @@ button:active {
   background-color: rgb(201, 233, 245);
 }
 
-.score__number {
+.window-score__number {
   font-family: 'Lato-Black';
   font-size: 25px;
   color: red;
 }
 
-.controlPanel {
+.entry-field__control-panel {
   width: 80%;
   height: 65%;
   background-color: rgb(235, 220, 200);
@@ -333,7 +333,7 @@ button:active {
   justify-content: center;
 }
 
-.screen {
+.control-panel__screen {
   border: 0.5px solid gray;
   width: 91%;
   height: 20%;
@@ -405,7 +405,7 @@ button:active {
   border-radius: 0 0 0 10px;
 }
 
-.key.high {
+.key.key-high {
   width: 95%;
   height: 50%;
   border: 2px solid gray;
@@ -417,15 +417,15 @@ button:active {
   font-size: 20px;
 }
 
-.key.high:last-child {
+.key.key-high:last-child {
   border-radius: 0 0 10px 0;
 }
 
-.key.high:active {
+.key.key-high:active {
   background-color: rgba(239, 253, 239, 0.2);
 }
 
-.how_to_play {
+.how-to-play-demo-video {
   display: none;
   position: absolute;
   width: 80%;
@@ -447,11 +447,11 @@ button:active {
     left: 35%;
   }
 
-  .operator {
+  .drop-math-operator {
     font-size: 24px;
   }
 
-  .dropContainerNumbers {
+  .drop__numbers {
     font-size: 20px;
   }
 
@@ -505,13 +505,13 @@ button:active {
     }
   }
 
-  .star img {
+  .window-score__star img {
     width: 25px;
     height: 25px;
     padding-right: 15px;
   }
 
-  .window__score h2 {
+  .window-score h2 {
     margin: 0;
     width: 60%;
     font-size: 25px;
@@ -520,15 +520,15 @@ button:active {
     justify-content: space-around;
   }
 
-  .window__score h2 span {
+  .window-score h2 span {
     padding-top: 3px;
   }
 
-  .controlPanel {
+  .entry-field__control-panel {
     height: 50%;
   }
 
-  .screen {
+  .control-panel__screen {
     width: 90.3%;
     height: 15%;
     display: flex;
@@ -536,7 +536,7 @@ button:active {
     align-items: center;
   }
 
-  .screen_number {
+  .control-panel__screen-number {
     margin-top: 20px;
     margin-right: 3px;
   }
@@ -563,7 +563,7 @@ button:active {
     width: 65%;
   }
 
-  .key.high {
+  .key.key-high {
     width: 96.4%;
     height: 50%;
     font-size: 16px;
@@ -584,11 +584,11 @@ button:active {
     left: 30%;
   }
 
-  .operator {
+  .drop-math-operator {
     font-size: 18px;
   }
 
-  .dropContainerNumbers {
+  .drop__numbers {
     font-size: 16px;
   }
 
@@ -648,45 +648,45 @@ button:active {
 
   /*------block score------*/
 
-  .star img {
+  .window-score__star img {
     width: 15px;
     height: 15px;
     padding-right: 0;
   }
 
-  .score {
+  .entry-field__score {
     width: 100%;
     height: 20%;
   }
 
-  .window__score,
-  .score::before,
-  .score::after {
+  .window-score,
+  .entry-field__score::before,
+  .entry-field__score::after {
     height: 25%;
   }
 
-  .window__score h2 {
+  .window-score h2 {
     width: 100%;
     font-size: 16px;
   }
 
-  .window__score h2 span {
+  .window-score h2 span {
     font-size: 16px;
     padding-top: 1px;
   }
 
   /*------------------control panel ------------------*/
 
-  .controlPanel {
+  .entry-field__control-panel {
     height: 40%;
   }
 
-  .screen {
+  .control-panel__screen {
     width: 90%;
     height: 15%;
   }
 
-  .screen_number {
+  .control-panel__screen-number {
     margin-top: 12px;
     margin-right: 3px;
     font-size: 22px;
@@ -714,7 +714,7 @@ button:active {
     width: 64%;
   }
 
-  .key.high {
+  .key.key-high {
     width: 96%;
     height: 50%;
     font-size: 10px;
@@ -736,17 +736,17 @@ button:active {
     left: 30%;
   }
 
-  .operator {
+  .drop-math-operator {
     font-size: 14px;
   }
 
-  .dropContainerNumbers {
+  .drop__numbers {
     font-size: 12px;
   }
 
   /*----------------buttons play and how to play----------------*/
 
-  .wrapper_button {
+  .buttons {
     height: 140px;
     display: flex;
     flex-direction: column;
@@ -807,44 +807,44 @@ button:active {
 
   /*------block score------*/
 
-  .star img {
+  .window-score__star img {
     display: none;
   }
 
-  .score {
+  .entry-field__score {
     width: 100%;
     height: 15%;
   }
 
-  .window__score,
-  .score::before,
-  .score::after {
+  .window-score,
+  .entry-field__score::before,
+  .entry-field__score::after {
     height: 25%;
     border-bottom: 2px solid #ffffff;
   }
 
-  .window__score h2 {
+  .window-score h2 {
     width: 100%;
     font-size: 13px;
   }
 
-  .window__score h2 span {
+  .window-score h2 span {
     font-size: 14px;
     padding-top: 1px;
   }
 
   /*------------------control panel ------------------*/
 
-  .controlPanel {
+  .entry-field__control-panel {
     height: 25%;
   }
 
-  .screen {
+  .control-panel__screen {
     width: 89%;
     height: 15%;
   }
 
-  .screen_number {
+  .control-panel__screen-number {
     margin-top: 12px;
     margin-right: 1px;
     font-size: 16px;
@@ -873,7 +873,7 @@ button:active {
     width: 63%;
   }
 
-  .key.high {
+  .key.key-high {
     width: 96%;
     height: 50%;
     font-size: 10px;

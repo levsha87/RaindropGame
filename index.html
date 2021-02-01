@@ -9,16 +9,16 @@
   </head>
   <body>
     <main class="main">
-      <section class="fieldPlay">
-        <div class="wrapper_button">
-          <button class="play">Play</button>
-          <button class="how_play">How To Play</button>
+      <section class="play-field">
+        <div class="buttons">
+          <button class="play-button">Play</button>
+          <button class="how-play-button">How To Play</button>
         </div>
-        <div class="drop hidden">
-          <span class="operator">+</span>
-          <div class="dropContainerNumbers">
-            <span class="firstNumber">1</span>
-            <span class="secondNumber">2</span>
+        <div class="drop drop_hidden">
+          <span class="drop-math-operator">+</span>
+          <div class="drop__numbers">
+            <span class="drop__numbers_first-number">1</span>
+            <span class="drop__numbers_second-number">2</span>
           </div>
         </div>
         <div class="stones">
@@ -48,18 +48,18 @@
           </svg>
         </div>
       </section>
-      <section class="entryField">
-        <div class="score">
-          <div class="window__score">
-            <span class="star"
+      <section class="entry-field">
+        <div class="entry-field__score">
+          <div class="window-score">
+            <span class="window-score__star"
               ><img src="./assets/img/star15.png" alt="star"
             /></span>
-            <h2>Score: <span class="score__number">0</span></h2>
+            <h2>Score: <span class="window-score__number">0</span></h2>
           </div>
         </div>
-        <div class="controlPanel">
-          <div class="screen">
-            <span class="screen_number">0</span>
+        <div class="entry-field__control-panel">
+          <div class="control-panel__screen">
+            <span class="control-panel__screen-number">0</span>
           </div>
           <div class="keys">
             <div class="key__number">
@@ -76,25 +76,22 @@
               <span class="key">Del</span>
             </div>
             <div class="key__word">
-              <span class="key high">Clear</span>
-              <span class="key high">Enter</span>
+              <span class="key key-high">Clear</span>
+              <span class="key key-high">Enter</span>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <audio class="rains_sound" src="./assets/.mp3/rains sound.mp3"></audio>
-    <audio class="rigth_answer" src="./assets/.mp3/right answer.mp3"></audio>
+    <audio class="rains-sound" src="./assets/.mp3/rains sound.mp3"></audio>
+    <audio class="rigth-answer" src="./assets/.mp3/right answer.mp3"></audio>
     <audio
-      class="wrong_answer"
+      class="wrong-answer"
       src="./assets/.mp3/zvukovoy-effekt-nepravilnogo-otveta-wrong-buzzer-sound-effect.mp3"
     ></audio>
-    <video class="how_to_play" type="video/mp4"
+    <video class="how-to-play-demo-video" type="video/mp4"
     controls="controls">
-      <source
-        src="./assets/video/howPlay.mp4"
-        
-      />
+      <source src="./assets/video/howPlay.mp4"/>
     </video>
     <script src="./main.js"></script>
   </body>

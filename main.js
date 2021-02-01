@@ -52,24 +52,24 @@ const game = {
   },
 
   init: function () {
-    this.buttons.buttonPlay = document.querySelector('.play');
-    this.buttons.buttonShowHowPlay = document.querySelector('.how_play');
+    this.buttons.buttonPlay = document.querySelector('.play-button');
+    this.buttons.buttonShowHowPlay = document.querySelector('.how-play-button');
 
     this.elements.drop = document.querySelector('.drop');
     this.elements.keys = document.querySelector('.keys');
-    this.elements.screen = document.querySelector('.screen_number');
+    this.elements.screen = document.querySelector('.control-panel__screen-number');
     this.elements.stones = document.querySelector('.stones');
     this.elements.waveContainer = document.querySelector('.wave');
     this.elements.wave = document.querySelector('.wave_animation');
-    this.elements.sound = document.querySelector('.rains_sound');
-    this.elements.soundRightAnswer = document.querySelector('.rigth_answer');
-    this.elements.soundWrongAnswer = document.querySelector('.wrong_answer');
-    this.elements.videoHowPlay = document.querySelector('.how_to_play');
+    this.elements.sound = document.querySelector('.rains-sound');
+    this.elements.soundRightAnswer = document.querySelector('.rigth-answer');
+    this.elements.soundWrongAnswer = document.querySelector('.wrong-answer');
+    this.elements.videoHowPlay = document.querySelector('.how-to-play-demo-video');
 
-    this.gameState.firstNumberDrop = document.querySelector('.firstNumber');
-    this.gameState.secondNumberDrop = document.querySelector('.secondNumber');
-    this.gameState.currentOperatorDrop = document.querySelector('.operator');
-    this.gameState.score = document.querySelector('.score__number');
+    this.gameState.firstNumberDrop = document.querySelector('.drop__numbers_first-number');
+    this.gameState.secondNumberDrop = document.querySelector('.drop__numbers_second-number');
+    this.gameState.currentOperatorDrop = document.querySelector('.drop-math-operator');
+    this.gameState.score = document.querySelector('.window-score__number');
   },
 
   hideButtons: function () {
@@ -273,7 +273,7 @@ const game = {
   },
 
   showDrop: function () {
-    this.elements.drop.classList.remove('hidden');
+    this.elements.drop.classList.remove('drop_hidden');
     game.setCoordinateStoneTop();
   },
 
@@ -286,7 +286,7 @@ const game = {
   },
 
   hideDrop: function () {
-    this.elements.drop.classList.add('hidden');
+    this.elements.drop.classList.add('drop_hidden');
   },
 
   checkAnswer: function () {
